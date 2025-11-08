@@ -2,8 +2,8 @@
 
 ## AI Agent Instructions & Repository Configuration
 
-**Last Updated:** 2025-11-07  
-**Repository:** Ryno Crypto Services & TerraHash Stack Technical Documentation  
+**Last Updated:** 2025-11-07
+**Repository:** Ryno Crypto Services & TerraHash Stack Technical Documentation
 **Version:** 2.0.0
 
 ---
@@ -449,14 +449,18 @@ This script enforces repository-specific naming conventions for images and docum
 
 1. **Fork or clone** the repository
 2. **Create a feature branch** from `main`:
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
+
 3. **Make your changes** following all guidelines in this document
 4. **Run pre-commit hooks**:
+
    ```bash
    pre-commit run --all-files
    ```
+
 5. **Write clear commit messages**:
    - Use imperative mood ("Add feature" not "Added feature")
    - Limit first line to 50 characters
@@ -723,7 +727,7 @@ By contributing to this repository, you agree to the following terms:
 
 ### Security and Responsible Disclosure
 
-- Report security issues privately to: security@rynocrypto.com
+- Report security issues privately to: <security@rynocrypto.com>
 - Do not publicly disclose vulnerabilities before patching
 - Follow responsible disclosure practices
 - See SECURITY.md for detailed policy
@@ -736,8 +740,8 @@ By contributing to this repository, you agree to the following terms:
 
 - **General guidelines**: Review this CLAUDE.md and CONTRIBUTING.md
 - **Technical issues**: Open an issue on GitHub
-- **Security concerns**: Email security@rynocrypto.com
-- **Legal/licensing**: Email legal@rynocrypto.com
+- **Security concerns**: Email <security@rynocrypto.com>
+- **Legal/licensing**: Email <legal@rynocrypto.com>
 - **Contributions**: Contact repository maintainers
 
 **Maintainers:**

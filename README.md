@@ -232,6 +232,7 @@ pre-commit run --all-files
 ### Quick Reference
 
 **General Rules:**
+
 - Use **lowercase** only
 - Replace spaces with **hyphens** (`-`)
 - Limit to **50 characters** (excluding extension)
@@ -239,6 +240,7 @@ pre-commit run --all-files
 - Include dates as: `YYYY-MM-DD` or `YYYYMMDD`
 
 **Image Files:**
+
 ```
 [org]-[product]-[descriptor]-[type]-[resolution]-[version].[format]
 
@@ -248,6 +250,7 @@ ths-stack-architecture-diagram-2560x1440-v1-0.svg
 ```
 
 **Document Files:**
+
 ```
 [org]-[product]-[category]-[title]-[version].[format]
 
@@ -257,6 +260,7 @@ ths-stack-specs-data-pipeline-v2-0.md
 ```
 
 **Markdown Files:**
+
 ```
 [category]-[title]-[optional-date].md
 
@@ -310,6 +314,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) format:
 ```
 
 **Types:**
+
 - `feat`: New feature or document
 - `fix`: Bug fix or correction
 - `docs`: Documentation updates
@@ -319,6 +324,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) format:
 - `chore`: Maintenance tasks
 
 **Example:**
+
 ```
 feat(prd): add token economics PRD
 
@@ -365,11 +371,13 @@ All documentation must be:
 ### Markdown Style Guide
 
 **Headers:**
+
 - Use `#` for H1, `##` for H2, `###` for H3
 - Never skip header levels
 - Use descriptive, meaningful headers
 
 **Formatting:**
+
 - **Bold** for emphasis on key terms
 - *Italics* for definitions or secondary emphasis
 - `Code blocks` for commands, file names, code
@@ -377,6 +385,7 @@ All documentation must be:
 - Numbered lists for sequential steps
 
 **Structure:**
+
 - Start with title and brief summary
 - Include table of contents for long docs
 - Use clear hierarchical organization
@@ -413,24 +422,28 @@ Pre-commit hooks automatically validate and fix common issues before commits.
 ### What Gets Checked
 
 **File Validation:**
+
 - ✅ No large files (> 5MB)
 - ✅ No case conflicts
 - ✅ No merge conflicts
 - ✅ Valid JSON, YAML, TOML, XML
 
 **Filename Validation:**
+
 - ✅ No spaces in filenames
 - ✅ Lowercase only (with exceptions)
 - ✅ No invalid characters
 - ✅ Follows naming conventions
 
 **Content Validation:**
+
 - ✅ No trailing whitespace
 - ✅ Files end with newline
 - ✅ No private keys
 - ✅ Proper line endings (LF)
 
 **Code Quality:**
+
 - ✅ Valid Python syntax
 - ✅ Markdown linting
 - ✅ Shell script validation
@@ -475,11 +488,13 @@ This repository is licensed under [Creative Commons Attribution 4.0 Internationa
 ### What This Means
 
 **You are free to:**
+
 - ✅ **Share**: Copy and redistribute the material
 - ✅ **Adapt**: Remix, transform, and build upon the material
 - ✅ **Commercial Use**: Use for commercial purposes
 
 **Under the following terms:**
+
 - **Attribution**: You must give appropriate credit, provide a link to the license, and indicate if changes were made
 - **No additional restrictions**: You may not apply legal terms or technological measures that legally restrict others
 
@@ -504,20 +519,24 @@ By contributing to this repository, you agree to license your contributions unde
 ### Support Channels
 
 **General Questions:**
-- 📧 Email: support@rynocrypto.com
+
+- 📧 Email: <support@rynocrypto.com>
 - 💬 Discord: [Join our Discord](https://discord.gg/rynocrypto)
 - 📱 Twitter: [@rynocrypto](https://twitter.com/rynocrypto)
 
 **Technical Issues:**
+
 - 🐛 GitHub Issues: [Open an issue](https://github.com/rynocrypto/docs/issues)
 - 📖 Documentation: [Browse docs](./docs/)
 
 **Security Concerns:**
-- 🔒 Email: security@rynocrypto.com
+
+- 🔒 Email: <security@rynocrypto.com>
 - 📋 See: [SECURITY.md](./SECURITY.md)
 
 **Legal/Licensing:**
-- ⚖️ Email: legal@rynocrypto.com
+
+- ⚖️ Email: <legal@rynocrypto.com>
 
 ### Project Maintainers
 
@@ -530,14 +549,17 @@ By contributing to this repository, you agree to license your contributions unde
 ## 🌟 Acknowledgments
 
 **Contributors:**
+
 - See [CONTRIBUTORS.md](./CONTRIBUTORS.md) for full list
 
 **Third-Party Resources:**
+
 - Pre-commit hooks: [pre-commit.com](https://pre-commit.com)
 - Markdown linting: [markdownlint](https://github.com/markdownlint/markdownlint)
 - ISO 15489 standards: [ISO](https://www.iso.org)
 
 **Special Thanks:**
+
 - All community contributors
 - Open source project maintainers
 - Documentation reviewers and editors
@@ -547,6 +569,7 @@ By contributing to this repository, you agree to license your contributions unde
 ## 🗺️ Roadmap
 
 **Current Focus (Q4 2025):**
+
 - ✅ Implement comprehensive file naming conventions
 - ✅ Deploy automated pre-commit validation
 - ✅ Complete repository reorganization to CLAUDE.md standards
@@ -555,12 +578,14 @@ By contributing to this repository, you agree to license your contributions unde
 - 🚧 Create video tutorial series
 
 **Upcoming (Q1 2026):**
+
 - 📋 Automated documentation generation
 - 📋 Interactive API playground
 - 📋 Multi-language support
 - 📋 Community contribution portal
 
 **Long-term Vision:**
+
 - Create industry-leading blockchain documentation
 - Establish documentation best practices
 - Build vibrant contributor community

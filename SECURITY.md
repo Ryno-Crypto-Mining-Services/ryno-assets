@@ -22,9 +22,10 @@ This repository contains documentation and media assets. Security updates apply 
 
 If you discover a security vulnerability, please report it privately:
 
-**Email:** security@rynocrypto.com
+**Email:** <security@rynocrypto.com>
 
 **Include in your report:**
+
 - Description of the vulnerability
 - Steps to reproduce the issue
 - Potential impact assessment
@@ -137,6 +138,7 @@ For infrastructure and deployment documentation:
 ### Scope
 
 This policy applies to:
+
 - Documentation vulnerabilities (outdated security guidance)
 - Asset integrity issues (compromised media files)
 - Repository access control issues
@@ -152,6 +154,7 @@ This policy applies to:
 ### Safe Harbor
 
 We support security research and will not pursue legal action against researchers who:
+
 - Act in good faith
 - Follow responsible disclosure
 - Do not access or modify data beyond what's necessary
@@ -163,6 +166,7 @@ We support security research and will not pursue legal action against researcher
 ### Notification Channels
 
 Security updates will be announced via:
+
 - GitHub Security Advisories
 - CHANGELOG.md updates
 - Repository README.md notices
@@ -180,17 +184,18 @@ Security updates will be announced via:
 ## Compliance
 
 This security policy aligns with:
+
 - **ISO 15489:** Records management standards
 - **GDPR:** Data protection requirements (where applicable)
 - **Industry Best Practices:** OWASP, NIST guidelines
 
 ## Contact Information
 
-**Security Team:** security@rynocrypto.com
+**Security Team:** <security@rynocrypto.com>
 
-**General Inquiries:** info@rynocrypto.com
+**General Inquiries:** <info@rynocrypto.com>
 
-**GitHub Issues:** https://github.com/RynoCrypto/ryno-assets/issues (non-security issues only)
+**GitHub Issues:** <https://github.com/RynoCrypto/ryno-assets/issues> (non-security issues only)
 
 ## Acknowledgments
 

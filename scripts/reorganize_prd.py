@@ -3,9 +3,8 @@
 Script to reorganize PRD files from old structure to new structure
 """
 
-import os
-import shutil
 import re
+import shutil
 from pathlib import Path
 
 # Mapping of old directory names to new directory names
@@ -24,17 +23,22 @@ dir_mapping = {
     "12 Comprehensive Risk Analysis & Mitigation Framew": "risk-analysis",
 }
 
+
 def fix_filename(filename):
     """Fix filename format (e.g., v1.0 -> v1-0, underscores to hyphens)"""
     # Replace v1.0 with v1-0
-    filename = re.sub(r'v(\d+)\.(\d+)', r'v\1-\2', filename)
+    filename = re.sub(r"v(\d+)\.(\d+)", r"v\1-\2", filename)
     # Replace underscores with hyphens
-    filename = filename.replace('_', '-')
+    filename = filename.replace("_", "-")
     return filename
+
 
 def main():
     base_dir = Path("/Users/elvis/Documents/Git/RynoCrypto/ryno-assets")
-    old_prd_base = base_dir / "docs/prd/terrahash-retrofitting/Product Requirements Document TerraHash Stack as a"
+    old_prd_base = (
+        base_dir
+        / "docs/prd/terrahash-retrofitting/Product Requirements Document TerraHash Stack as a"
+    )
     new_prd_base = base_dir / "prd/active/terrahash-retrofitting"
 
     # Process each directory
@@ -65,6 +69,7 @@ def main():
         shutil.copy2(md_file, new_path)
 
     print("\nPRD reorganization complete!")
+
 
 if __name__ == "__main__":
     main()

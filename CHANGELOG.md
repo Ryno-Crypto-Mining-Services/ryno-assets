@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Complete repository reorganization for CLAUDE.md compliance
 - New directory structure following ISO 15489 standards
 - LICENSE file with CC BY 4.0 and MIT dual licensing
@@ -15,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This CHANGELOG.md for version tracking
 
 ### Changed
+
 - All file names converted to lowercase with hyphens
 - Version numbers standardized to hyphenated format (v1-0)
 - Image files now include resolution information
@@ -23,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Directory structure aligned with CLAUDE.md specifications
 
 ### Fixed
+
 - Removed spaces from all file and directory names
 - Replaced underscores with hyphens for consistency
 - Fixed uppercase letters in file names
@@ -31,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0] - 2025-11-07
 
 ### Added
+
 - Comprehensive CLAUDE.md with AI agent instructions
 - CONTRIBUTING.md with contribution guidelines
 - File naming conventions and standards
@@ -39,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Repository structure guidelines
 
 ### Changed
+
 - Updated README.md with repository overview
 - Enhanced documentation quality standards
 - Improved organization of technical documents
@@ -46,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-10-22
 
 ### Added
+
 - TerraHash Stack Technical Whitepaper v1.0
 - TerraHash Stack Technical Litepaper v1.0
 - Initial product requirements documents (PRDs)
@@ -56,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Social media marketing materials
 
 ### Documentation
+
 - Initial repository structure
 - Core technical documentation
 - Product specifications
@@ -84,8 +91,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Maintainers
 
 For questions about this changelog:
+
 - Open an issue on GitHub
-- Contact: info@rynocrypto.com
+- Contact: <info@rynocrypto.com>
 
 ---
 

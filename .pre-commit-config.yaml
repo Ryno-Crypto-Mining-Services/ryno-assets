@@ -1,205 +1,33 @@
----
 # .pre-commit-config.yaml
-# Pre-commit hooks for home lab infrastructure automation
-# Philosophy: Staging-level quality (secure, functional, readable)
-# Not overly strict - warnings acceptable for minor issues
+# Lightweight config suited to documentation and media repositories
 
 default_language_version:
   python: python3.11
-
-default_stages: [commit]
+default_stages: [pre-commit]
 
 repos:
-  # General pre-commit hooks (baseline quality)
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
         name: Trim trailing whitespace
-      
       - id: end-of-file-fixer
-        name: Fix end of files
-      
+        name: Add and fix end of files
       - id: check-yaml
         name: Check YAML syntax
         args: ['--allow-multiple-documents']
-      
       - id: check-added-large-files
-        name: Check for large files
-        args: ['--maxkb=10240']  # 10MB limit (home lab flexibility)
-      
+        name: Warn about large files
+        args: ['--maxkb=10240']  # 10MB limit is reasonable for media
       - id: check-merge-conflict
-        name: Check for merge conflicts
-      
-      - id: check-case-conflict
-        name: Check for case conflicts
-      
+        name: Prevent merge conflicts
       - id: mixed-line-ending
-        name: Check line endings
+        name: Fix mixed line endings
         args: ['--fix=lf']
 
-  # Security scanning (critical - must pass)
+  # Secret scanning (optional: still good for docs repos)
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.4.0
     hooks:
       - id: detect-secrets
         name: Detect secrets
-        args: 
-          - '--baseline'
-          - '.secrets.baseline'
-          - '--exclude-files'
-          - '.*\.lock$'
-          - '--exclude-files'
-          - '.*\.terraform/.*'
-        exclude: |
-          (?x)^(
-            .*\.vault\.yml$|
-            .*\.sops\.ya?ml$|
-            .secrets.baseline
-          )$
-
-  # Ansible linting (moderate strictness for home lab)
-  - repo: https://github.com/ansible/ansible-lint
-    rev: v6.22.1
-    hooks:
-      - id: ansible-lint
-        name: Ansible lint
-        files: \.(ya?ml)$
-        args:
-          - '--force-color'
-          - '--offline'
-          - '--profile=moderate'  # Not 'production' - home lab flexibility
-        exclude: |
-          (?x)^(
-            \.github/.*|
-            molecule/.*|
-            requirements\.ya?ml$
-          )$
-
-  # YAML linting (relaxed for home lab experimentation)
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.33.0
-    hooks:
-      - id: yamllint
-        name: YAML lint
-        args:
-          - '--config-file=.yamllint'
-          - '--format=colored'
-          - '--strict'
-        exclude: |
-          (?x)^(
-            .*\.vault\.yml$|
-            \.pre-commit-config\.yaml$
-          )$
-
-  # Terraform formatting and validation
-  - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.86.0
-    hooks:
-      - id: terraform_fmt
-        name: Terraform format
-      
-      - id: terraform_validate
-        name: Terraform validate
-        args:
-          - '--hook-config=--retry-once-with-cleanup=true'
-      
-      - id: terraform_docs
-        name: Terraform docs
-        args:
-          - '--args=--config=.terraform-docs.yml'
-          - '--hook-config=--path-to-file=README.md'
-          - '--hook-config=--add-to-existing-file=true'
-          - '--hook-config=--create-file-if-not-exist=true'
-      
-      - id: terraform_tflint
-        name: Terraform lint
-        args:
-          - '--args=--config=__GIT_WORKING_DIR__/.tflint.hcl'
-          - '--args=--minimum=warning'  # Warnings OK, errors fail
-      
-      - id: terraform_tfsec
-        name: Terraform security scan
-        args:
-          - '--args=--minimum-severity=HIGH'  # Only high/critical fail
-          - '--args=--concise-output'
-          - '--args=--force-all-dirs'
-      
-      - id: terraform_checkov
-        name: Terraform Checkov scan
-        args:
-          - '--args=--quiet'
-          - '--args=--compact'
-          - '--args=--framework=terraform'
-          - '--args=--skip-check=CKV_*_LOW,CKV_*_MEDIUM'  # Only high/critical
-
-  # Python code quality (relaxed for home lab scripts)
-  - repo: https://github.com/psf/black
-    rev: 23.12.1
-    hooks:
-      - id: black
-        name: Black formatter
-        args:
-          - '--line-length=100'  # Relaxed from default 88
-          - '--target-version=py311'
-        language_version: python3.11
-
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.9
-    hooks:
-      - id: ruff
-        name: Ruff linter
-        args:
-          - '--fix'
-          - '--exit-non-zero-on-fix'
-          - '--select=E,F,W,I,N,UP'  # Moderate rule set
-          - '--ignore=E501,W291'  # Ignore line length, trailing whitespace (black handles)
-
-  # Shell script linting
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.9.0.6
-    hooks:
-      - id: shellcheck
-        name: Shellcheck
-        args:
-          - '--severity=warning'  # Info notes OK
-          - '--shell=bash'
-        exclude: |
-          (?x)^(
-            \.git/.*
-          )$
-
-  # Docker linting (if using Dockerfiles)
-  - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.0
-    hooks:
-      - id: hadolint-docker
-        name: Hadolint (Docker lint)
-        args:
-          - '--ignore=DL3008'  # Allow not pinning apt versions (home lab)
-          - '--ignore=DL3009'  # Allow skipping apt cache cleanup (convenience)
-
-  # Markdown linting (documentation quality)
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.38.0
-    hooks:
-      - id: markdownlint
-        name: Markdown lint
-        args:
-          - '--fix'
-          - '--disable=MD013'  # Disable line length rule
-          - '--disable=MD033'  # Allow inline HTML
-          - '--disable=MD041'  # First line doesn't have to be H1
-
-  # Git commit message linting (optional but recommended)
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
-    hooks:
-      - id: commitizen
-        name: Commitizen check
-        stages: [commit-msg]
-
-# Configuration for bypassing hooks (for WIP commits):
-# git commit --no-verify -m "WIP: experimenting with new feature"
-# 
-# Remember to fix issues before merging to main!

@@ -7,12 +7,14 @@ Thank you for your interest in contributing to this home lab infrastructure proj
 ## Project Philosophy
 
 This home lab intentionally balances:
+
 - 🎓 **Learning & Experimentation**: Try new technologies, learn from failures
-- 🏭 **Production Patterns**: HA, monitoring, security like real infrastructure  
+- 🏭 **Production Patterns**: HA, monitoring, security like real infrastructure
 - 💰 **Cost Effectiveness**: Optimize for limited resources and budget
 - ⚡ **Rapid Iteration**: Fast feedback loops, safe to experiment
 
 **Code Quality Target:** Staging/Pre-Production level
+
 - Secure, functional, and readable
 - Not overly strict or enterprise-level bureaucratic
 - Warnings acceptable, critical errors must be fixed
@@ -22,6 +24,7 @@ This home lab intentionally balances:
 ### Prerequisites
 
 **Required Tools:**
+
 ```bash
 # Core infrastructure tools
 terraform  # >= 1.13.3
@@ -42,6 +45,7 @@ shellcheck
 ```
 
 **Install Pre-commit Hooks:**
+
 ```bash
 # Install pre-commit framework
 pip install pre-commit
@@ -59,12 +63,14 @@ pre-commit run --all-files
 ### Initial Setup
 
 1. **Fork and Clone Repository:**
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/home-lab.git
    cd home-lab
    ```
 
 2. **Create Feature Branch:**
+
    ```bash
    git checkout -b feature/your-feature-name
    # or
@@ -72,13 +78,14 @@ pre-commit run --all-files
    ```
 
 3. **Set Up Development Environment:**
+
    ```bash
    # Install Python dependencies
    pip install -r requirements.txt
-   
+
    # Install Ansible collections
    ansible-galaxy collection install -r requirements.yml
-   
+
    # Verify tool versions
    make version  # If Makefile exists
    ```
@@ -88,14 +95,16 @@ pre-commit run --all-files
 ### Quality Gates
 
 **🔴 Must Pass (Blocking):**
+
 - ❌ No secrets in commits (detect-secrets enforced)
 - ❌ Ansible syntax validation
-- ❌ Terraform fmt and validate  
+- ❌ Terraform fmt and validate
 - ❌ YAML syntax valid
 - ❌ Critical security vulnerabilities (HIGH/CRITICAL from tfsec/checkov)
 - ❌ No broken functionality in critical paths
 
 **🟡 Should Pass (Warnings OK):**
+
 - ⚠️ Ansible-lint style suggestions
 - ⚠️ Terraform tflint best practices
 - ⚠️ Documentation completeness
@@ -103,6 +112,7 @@ pre-commit run --all-files
 - ⚠️ Minor security improvements (MEDIUM/LOW)
 
 **🟢 Can Skip for WIP:**
+
 - ✅ Use `git commit --no-verify` for work-in-progress
 - ✅ Add `WIP:` prefix to commit message
 - ✅ Fix all issues before creating pull request
@@ -112,6 +122,7 @@ pre-commit run --all-files
 Our pre-commit configuration includes:
 
 **General Quality:**
+
 - Trailing whitespace removal
 - End-of-file fixer
 - YAML syntax validation
@@ -119,13 +130,16 @@ Our pre-commit configuration includes:
 - Merge conflict detection
 
 **Security:**
+
 - `detect-secrets`: Scan for committed secrets
 
 **Ansible:**
+
 - `ansible-lint`: Moderate profile (not overly strict)
 - `yamllint`: Relaxed rules for experimentation
 
 **Terraform:**
+
 - `terraform_fmt`: Automatic formatting
 - `terraform_validate`: Syntax validation
 - `terraform_docs`: Auto-generate documentation
@@ -134,16 +148,20 @@ Our pre-commit configuration includes:
 - `terraform_checkov`: Compliance (HIGH/CRITICAL only)
 
 **Python:**
+
 - `black`: Code formatting (line-length=100)
 - `ruff`: Linting (moderate rule set)
 
 **Shell:**
+
 - `shellcheck`: Bash script linting
 
 **Docker:**
+
 - `hadolint`: Dockerfile linting (relaxed rules)
 
 **Markdown:**
+
 - `markdownlint`: Documentation quality
 
 ### Running Quality Checks Manually
@@ -186,6 +204,7 @@ ruff check .
 ### 2. Make Your Changes
 
 **Ansible Playbooks:**
+
 ```yaml
 ---
 # Always use FQCN (Fully Qualified Collection Names)
@@ -212,11 +231,12 @@ ruff check .
 ```
 
 **Terraform Modules:**
+
 ```hcl
 # Include version constraints
 terraform {
   required_version = ">= 1.13.0"
-  
+
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
@@ -228,13 +248,13 @@ terraform {
 # Tag all resources
 resource "proxmox_vm_qemu" "web" {
   # ... configuration ...
-  
+
   tags = {
     Environment = var.environment
     ManagedBy   = "Terraform"
     Project     = "HomeLabAnm"
   }
-  
+
   # HA lifecycle rules
   lifecycle {
     create_before_destroy = true
@@ -249,6 +269,7 @@ output "vm_ip" {
 ```
 
 **Kubernetes Manifests:**
+
 ```yaml
 ---
 apiVersion: apps/v1
@@ -268,11 +289,11 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
-      
+
       containers:
       - name: app
         image: registry.local/myapp:v1.2.3  # Specific version!
-        
+
         # Resource limits required
         resources:
           requests:
@@ -281,7 +302,7 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "200m"
-        
+
         # Health probes required
         livenessProbe:
           httpGet:
@@ -296,6 +317,7 @@ spec:
 ### 3. Test Your Changes
 
 **Ansible Testing:**
+
 ```bash
 # Syntax check
 ansible-playbook playbook.yml --syntax-check
@@ -311,6 +333,7 @@ ansible-lint playbook.yml
 ```
 
 **Terraform Testing:**
+
 ```bash
 # Format code
 terraform fmt -recursive
@@ -330,6 +353,7 @@ terraform-docs markdown . > README.md
 ```
 
 **Kubernetes Testing:**
+
 ```bash
 # Dry run
 kubectl apply --dry-run=server -f manifest.yml
@@ -346,6 +370,7 @@ kube-score score manifest.yml
 **Required Documentation:**
 
 1. **Code Comments:**
+
    ```yaml
    # Explain WHY, not just WHAT
    - name: Disable SELinux
@@ -370,6 +395,7 @@ kube-score score manifest.yml
 ### 5. Commit Your Changes
 
 **Commit Message Format:**
+
 ```
 <type>(<scope>): <subject>
 
@@ -379,6 +405,7 @@ kube-score score manifest.yml
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation only
@@ -388,6 +415,7 @@ kube-score score manifest.yml
 - `chore`: Maintenance tasks
 
 **Example:**
+
 ```bash
 git commit -m "feat(ansible): add Bitwarden secrets lookup support
 
@@ -450,11 +478,13 @@ Reviewers will check:
 ### Ansible Playbook Testing
 
 **Minimum Required:**
+
 - Syntax validation: `ansible-playbook --syntax-check`
 - Check mode dry-run: `ansible-playbook --check --diff`
 - Ansible-lint: `ansible-lint playbook.yml`
 
 **Recommended:**
+
 - Test in dev environment before prod
 - Use tags for incremental testing
 - Molecule for role testing (if applicable)
@@ -462,11 +492,13 @@ Reviewers will check:
 ### Terraform Module Testing
 
 **Minimum Required:**
+
 - Format check: `terraform fmt -check`
 - Validation: `terraform validate`
 - Plan review: `terraform plan`
 
 **Recommended:**
+
 - Security scan: `tfsec .` and `checkov -d .`
 - Documentation: `terraform-docs`
 - Test in separate workspace first
@@ -474,10 +506,12 @@ Reviewers will check:
 ### Kubernetes Manifest Testing
 
 **Minimum Required:**
+
 - Dry-run: `kubectl apply --dry-run=server`
 - Schema validation: `kubeval`
 
 **Recommended:**
+
 - Security scan: `kubesec scan`
 - Best practices: `kube-score score`
 - Test in development namespace first
@@ -487,6 +521,7 @@ Reviewers will check:
 ### Pre-commit Hooks Failing
 
 **Issue:** `detect-secrets` finds false positives
+
 ```bash
 # Update baseline to include false positives
 detect-secrets scan --baseline .secrets.baseline
@@ -494,6 +529,7 @@ git add .secrets.baseline
 ```
 
 **Issue:** `ansible-lint` too strict
+
 ```bash
 # Skip specific rules in playbook
 # yamllint disable-line rule:line-length
@@ -503,6 +539,7 @@ git add .secrets.baseline
 ```
 
 **Issue:** `terraform_tfsec` blocking on medium severity
+
 ```bash
 # tfsec scans only HIGH/CRITICAL in pre-commit
 # Run full scan separately: tfsec .
@@ -532,6 +569,7 @@ By contributing, you agree that your contributions will be licensed under the sa
 ## Questions?
 
 If you have questions about contributing, please:
+
 1. Check existing documentation
 2. Search GitHub issues
 3. Create a new issue with `question` label
