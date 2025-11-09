@@ -1,0 +1,84 @@
+graph TD
+    A[CDU-1500 Chiller<br/>400 GPM Capacity<br/>External Unit<br/>0.6m Clearance]
+
+    B[Container Penetration<br/>Insulated Quick-Disconnect<br/>Weather-Sealed]
+
+    C[Primary Distribution Manifold<br/>2 inch Pipe<br/>Main Header]
+
+    subgraph "Rack Distribution"
+        D1[Rack 1-2<br/>Manifold<br/>1.5 inch]
+        D2[Rack 3-4<br/>Manifold<br/>1.5 inch]
+        D3[Rack 5-6<br/>Manifold<br/>1.5 inch]
+        D4[Rack 7-8<br/>Manifold<br/>1.5 inch]
+        D5[Rack 9-10<br/>Manifold<br/>1.5 inch]
+    end
+
+    subgraph "Chassis Level"
+        E1[Chassis Quick-Connects<br/>0.75 inch Flex Hoses<br/>60 Total Connections]
+    end
+
+    subgraph "Cold Plate Array"
+        F1[240 × Cold Plates<br/>4 per Chassis<br/>Direct-to-Chip Cooling<br/>10-12 PSI Operating Pressure]
+    end
+
+    subgraph "Return Path"
+        G1[Return Manifolds<br/>1.5 inch Branches<br/>10 Total]
+        G2[Main Return Header<br/>2 inch Pipe]
+    end
+
+    H[Container Exit<br/>Insulated Quick-Disconnect]
+
+    I[Return to CDU-1500]
+
+    subgraph "Instrumentation"
+        J1[Flow Meters<br/>Per-Rack Monitoring]
+        J2[Pressure Sensors<br/>Differential Measurement]
+        J3[Temperature Sensors<br/>Inlet/Outlet per Chassis]
+        J4[Leak Detection<br/>Negative Pressure System]
+    end
+
+    A -->|Supply| B
+    B --> C
+
+    C --> D1
+    C --> D2
+    C --> D3
+    C --> D4
+    C --> D5
+
+    D1 --> E1
+    D2 --> E1
+    D3 --> E1
+    D4 --> E1
+    D5 --> E1
+
+    E1 --> F1
+
+    F1 --> G1
+    G1 --> G2
+    G2 --> H
+    H --> I
+
+    C -.-> J1
+    F1 -.-> J2
+    E1 -.-> J3
+    G1 -.-> J4
+
+    style A fill:#1e88e5
+    style B fill:#42a5f5
+    style C fill:#64b5f6
+    style D1 fill:#90caf9
+    style D2 fill:#90caf9
+    style D3 fill:#90caf9
+    style D4 fill:#90caf9
+    style D5 fill:#90caf9
+    style E1 fill:#bbdefb
+    style F1 fill:#e3f2fd
+    style G1 fill:#ffccbc
+    style G2 fill:#ffab91
+    style H fill:#ff8a65
+    style I fill:#ff7043
+    style J1 fill:#fff9c4
+    style J2 fill:#fff9c4
+    style J3 fill:#fff9c4
+    style J4 fill:#fff9c4

@@ -1,0 +1,89 @@
+graph TB
+    subgraph "Data Sources"
+        A1[ASIC Telemetry<br/>Temperature, Voltage, Hashrate]
+        A2[IoT Sensors<br/>Flow, Pressure, Temperature]
+        A3[Market Data APIs<br/>BTC Price, Difficulty, Grid Pricing]
+    end
+
+    subgraph "Data Ingestion Layer"
+        B1[gRPC Collectors<br/>High-frequency ASIC data]
+        B2[MQTT Broker<br/>IoT sensor streams]
+        B3[REST Collectors<br/>External API polling]
+    end
+
+    subgraph "Stream Processing"
+        C1[Apache Kafka<br/>Message Queue & Stream Processing]
+    end
+
+    subgraph "Feature Engineering"
+        D1[Data Transformation<br/>Normalization & Aggregation]
+        D2[Vector Embedding<br/>Cohere API]
+    end
+
+    subgraph "Storage Layer"
+        E1[TimescaleDB<br/>Time-Series Data<br/>PostgreSQL Extension]
+        E2[Pinecone<br/>Vector Database<br/>Sub-100ms Search]
+    end
+
+    subgraph "AI Decision Engine"
+        F1[LangChain + AutoGen<br/>Agent Framework]
+        F2[Cohere Command<br/>LLM Models]
+        F3[Cloudflare Workers AI<br/>Edge Inference]
+    end
+
+    subgraph "Action Execution"
+        G1[BraiinsOS API<br/>Firmware Control]
+        G2[Cooling System Control<br/>Flow & Temperature]
+        G3[Grid Integration<br/>Demand Response]
+    end
+
+    subgraph "Monitoring & Visualization"
+        H1[Grafana Dashboard<br/>10-second Granularity]
+    end
+
+    A1 --> B1
+    A2 --> B2
+    A3 --> B3
+
+    B1 --> C1
+    B2 --> C1
+    B3 --> C1
+
+    C1 --> D1
+    D1 --> D2
+
+    D1 --> E1
+    D2 --> E2
+
+    E1 --> F1
+    E2 --> F1
+    F1 --> F2
+    F2 --> F3
+
+    F3 --> G1
+    F3 --> G2
+    F3 --> G3
+
+    E1 --> H1
+    G1 --> H1
+    G2 --> H1
+    G3 --> H1
+
+    style A1 fill:#e3f2fd
+    style A2 fill:#e3f2fd
+    style A3 fill:#e3f2fd
+    style B1 fill:#bbdefb
+    style B2 fill:#bbdefb
+    style B3 fill:#bbdefb
+    style C1 fill:#90caf9
+    style D1 fill:#64b5f6
+    style D2 fill:#64b5f6
+    style E1 fill:#42a5f5
+    style E2 fill:#42a5f5
+    style F1 fill:#2196f3
+    style F2 fill:#2196f3
+    style F3 fill:#2196f3
+    style G1 fill:#1e88e5
+    style G2 fill:#1e88e5
+    style G3 fill:#1e88e5
+    style H1 fill:#1976d2

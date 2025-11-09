@@ -1,0 +1,85 @@
+graph TD
+    A[Main Service<br/>1,200 kW @ 480V 3-Phase<br/>Utility Meter ±0.5% Accuracy]
+
+    subgraph "Primary Distribution"
+        B1[400A Breaker #1]
+        B2[400A Breaker #2]
+        B3[400A Breaker #3]
+    end
+
+    subgraph "Rack Distribution - Zone 1"
+        C1[Rack 1 PDU<br/>Eaton ePDU<br/>30kW]
+        C2[Rack 2 PDU<br/>Eaton ePDU<br/>30kW]
+        C3[Rack 3 PDU<br/>Eaton ePDU<br/>30kW]
+        C4[Rack 4 PDU<br/>Eaton ePDU<br/>30kW]
+    end
+
+    subgraph "Rack Distribution - Zone 2"
+        D1[Rack 5 PDU<br/>Eaton ePDU<br/>30kW]
+        D2[Rack 6 PDU<br/>Eaton ePDU<br/>30kW]
+        D3[Rack 7 PDU<br/>Eaton ePDU<br/>30kW]
+    end
+
+    subgraph "Rack Distribution - Zone 3"
+        E1[Rack 8 PDU<br/>Eaton ePDU<br/>30kW]
+        E2[Rack 9 PDU<br/>Eaton ePDU<br/>30kW]
+        E3[Rack 10 PDU<br/>Eaton ePDU<br/>30kW]
+    end
+
+    subgraph "Miner Level"
+        F1[6 × Chassis per Rack<br/>240 × S21 Pro Total<br/>Per-ASIC Monitoring via BraiinsOS]
+    end
+
+    subgraph "Power Quality"
+        G1[Active PFC Units<br/>Power Factor >0.98]
+        G2[N+1 Redundancy<br/>Backup PSU Configuration]
+    end
+
+    A --> B1
+    A --> B2
+    A --> B3
+
+    B1 --> C1
+    B1 --> C2
+    B1 --> C3
+    B1 --> C4
+
+    B2 --> D1
+    B2 --> D2
+    B2 --> D3
+
+    B3 --> E1
+    B3 --> E2
+    B3 --> E3
+
+    C1 --> F1
+    C2 --> F1
+    C3 --> F1
+    C4 --> F1
+    D1 --> F1
+    D2 --> F1
+    D3 --> F1
+    E1 --> F1
+    E2 --> F1
+    E3 --> F1
+
+    A --> G1
+    F1 --> G2
+
+    style A fill:#ff6b6b
+    style B1 fill:#ffa07a
+    style B2 fill:#ffa07a
+    style B3 fill:#ffa07a
+    style C1 fill:#87ceeb
+    style C2 fill:#87ceeb
+    style C3 fill:#87ceeb
+    style C4 fill:#87ceeb
+    style D1 fill:#87ceeb
+    style D2 fill:#87ceeb
+    style D3 fill:#87ceeb
+    style E1 fill:#87ceeb
+    style E2 fill:#87ceeb
+    style E3 fill:#87ceeb
+    style F1 fill:#98fb98
+    style G1 fill:#dda0dd
+    style G2 fill:#dda0dd
