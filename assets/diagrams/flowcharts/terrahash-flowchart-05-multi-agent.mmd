@@ -1,0 +1,56 @@
+sequenceDiagram
+    participant SP as Strategic Planning Agent
+    participant OC as Operational Coordination Agent
+    participant PT as Performance Tuning Agent
+    participant TM as Thermal Management Agent
+    participant PM as Predictive Maintenance Agent
+    participant PC as Pinecone Vector DB
+    participant LLM as Cohere Command LLM
+    participant TS as TimescaleDB
+    participant BO as BraiinsOS API
+
+    Note over SP: Monthly/Quarterly Objectives
+    SP->>OC: Set Revenue & Efficiency Targets
+
+    Note over OC: Daily/Weekly Optimization
+    OC->>PT: Request Performance Optimization
+    OC->>TM: Request Thermal Optimization
+    OC->>PM: Request Maintenance Schedule
+
+    Note over PT: 60s Cycle - Query Historical Data
+    PT->>PC: Similarity Search: Similar Conditions
+    PC-->>PT: Return Top-K Similar Scenarios
+    PT->>LLM: Generate Optimization Strategy
+    LLM-->>PT: Voltage/Frequency Recommendations
+    PT->>BO: Execute Firmware Adjustments
+    BO-->>PT: Confirm Changes Applied
+    PT->>TS: Log Performance Metrics
+
+    Note over TM: 30s Cycle - Thermal Monitoring
+    TM->>PC: Query: Optimal Thermal Profiles
+    PC-->>TM: Historical Temperature Patterns
+    TM->>LLM: Analyze Current vs Optimal
+    LLM-->>TM: Cooling Adjustment Strategy
+    TM->>BO: Adjust Fan Speeds & Flow Rates
+    BO-->>TM: Confirm Thermal Changes
+    TM->>TS: Log Thermal Data
+
+    Note over PM: 5min Cycle - Predictive Analysis
+    PM->>TS: Fetch Recent Telemetry
+    TS-->>PM: Hashboard Health Metrics
+    PM->>LLM: Predict Failure Probability
+    LLM-->>PM: Maintenance Recommendations
+    PM->>OC: Alert: Hashboard #47 Degrading
+    OC->>SP: Request Maintenance Window
+    SP-->>OC: Approve Maintenance Schedule
+    PM->>TS: Log Prediction & Action
+
+    Note over PT,PM: Conflict Resolution: Safety > Efficiency > Revenue
+
+    TM->>OC: Temperature Spike Detected
+    OC->>PT: Override: Reduce Power Target
+    PT->>BO: Emergency Power Reduction
+    BO-->>PT: Confirm Safety Mode
+
+    Note over SP,TS: All Actions Logged & Reversible
+    Note over SP,TS: Human Override Available via Control Panel

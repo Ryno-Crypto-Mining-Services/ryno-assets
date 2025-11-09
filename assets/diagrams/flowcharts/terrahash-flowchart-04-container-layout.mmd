@@ -1,0 +1,109 @@
+graph TD
+    subgraph Container["40-ft High-Cube Shipping Container - 40'L × 8'W × 9'6H"]
+        subgraph Entrance["Front Entrance"]
+            A[36 inch OSHA Door<br/>Emergency Exit #1]
+        end
+
+        subgraph FrontAisle["Front Aisle - 0.8m / 31.5 inches"]
+            B[Technician Access<br/>Straight-Line Path<br/>40% Faster Movement]
+        end
+
+        subgraph RackRow["Single-Row Rack Configuration"]
+            C1[Rack 1<br/>42U<br/>6×Chassis]
+            C2[Rack 2<br/>42U<br/>6×Chassis]
+            C3[Rack 3<br/>42U<br/>6×Chassis]
+            C4[Rack 4<br/>42U<br/>6×Chassis]
+            C5[Rack 5<br/>42U<br/>6×Chassis]
+            C6[Rack 6<br/>42U<br/>6×Chassis]
+            C7[Rack 7<br/>42U<br/>6×Chassis]
+            C8[Rack 8<br/>42U<br/>6×Chassis]
+            C9[Rack 9<br/>42U<br/>6×Chassis]
+            C10[Rack 10<br/>42U<br/>6×Chassis]
+        end
+
+        subgraph RearAisle["Rear Aisle - 0.8m / 31.5 inches"]
+            D[Maintenance Access<br/>Hot-Swap Capability<br/>OSHA Compliant >0.6m]
+        end
+
+        subgraph ServiceArea["Rear Service Clearance"]
+            E[CDU-1500 External<br/>0.6m / 23.6 inches<br/>Cooling Distribution Unit]
+        end
+
+        subgraph Exit["Rear Exit"]
+            F[Secondary Exit<br/>Emergency Egress #2<br/>Dual Exit Routes]
+        end
+
+        subgraph Cooling["Cooling Infrastructure"]
+            G[Primary Manifold - 2 inch<br/>Runs Along Ceiling<br/>Single Distribution Run]
+        end
+
+        subgraph Power["Power Distribution"]
+            H[3 × 400A Breakers<br/>10 × Rack PDUs<br/>Eaton ePDU 30kW Each]
+        end
+    end
+
+    A --> B
+    B --> C1
+    B --> C2
+    B --> C3
+    B --> C4
+    B --> C5
+    B --> C6
+    B --> C7
+    B --> C8
+    B --> C9
+    B --> C10
+
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    C5 --> D
+    C6 --> D
+    C7 --> D
+    C8 --> D
+    C9 --> D
+    C10 --> D
+
+    D --> E
+    E --> F
+
+    G --> C1
+    G --> C2
+    G --> C3
+    G --> C4
+    G --> C5
+    G --> C6
+    G --> C7
+    G --> C8
+    G --> C9
+    G --> C10
+
+    H --> C1
+    H --> C2
+    H --> C3
+    H --> C4
+    H --> C5
+    H --> C6
+    H --> C7
+    H --> C8
+    H --> C9
+    H --> C10
+
+    style A fill:#4caf50
+    style B fill:#81c784
+    style C1 fill:#64b5f6
+    style C2 fill:#64b5f6
+    style C3 fill:#64b5f6
+    style C4 fill:#64b5f6
+    style C5 fill:#64b5f6
+    style C6 fill:#64b5f6
+    style C7 fill:#64b5f6
+    style C8 fill:#64b5f6
+    style C9 fill:#64b5f6
+    style C10 fill:#64b5f6
+    style D fill:#ffb74d
+    style E fill:#42a5f5
+    style F fill:#66bb6a
+    style G fill:#29b6f6
+    style H fill:#ffa726

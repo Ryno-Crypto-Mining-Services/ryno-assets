@@ -1,0 +1,86 @@
+graph TD
+    subgraph EntryLevel["Entry-Level Deployment - Single Container"]
+        A1[Investment: $934,000]
+        A2[Hashrate: 67.4 PH/s]
+        A3[Power: 1.01 MW]
+        A4[ROI: 76.5% Annually]
+        A5[Payback: 15.9 Months]
+        A6[Target: Enthusiast Miners<br/>Small Commercial Operators]
+
+        A1 --> A2
+        A2 --> A3
+        A3 --> A4
+        A4 --> A5
+        A5 --> A6
+    end
+
+    subgraph Professional["Professional Deployment - 5 Containers"]
+        B1[Investment: $4.1M<br/>12% Cost Savings per Container]
+        B2[Hashrate: 337 PH/s]
+        B3[Power: 5.05 MW]
+        B4[Shared Infrastructure:<br/>Centralized Cooling Plant<br/>Reduced CDU Cost]
+        B5[Target: Regional Operators<br/>Renewable Energy Developers]
+
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+        B4 --> B5
+    end
+
+    subgraph Enterprise["Enterprise Deployment - 20+ Containers"]
+        C1[Investment: Custom Quote<br/>20-25% Cost Savings per Container]
+        C2[Hashrate: 1+ EH/s]
+        C3[Power: 20+ MW]
+        C4[Shared Infrastructure:<br/>Central Cooling Plant<br/>Dedicated Substation<br/>On-Site Maintenance Team]
+        C5[Advanced Features:<br/>Heat Recovery Integration<br/>Grid Balancing Services<br/>Renewable Energy Coordination]
+        C6[Target: Institutional Mining<br/>Energy Producers<br/>Large-Scale Operations]
+
+        C1 --> C2
+        C2 --> C3
+        C3 --> C4
+        C4 --> C5
+        C5 --> C6
+    end
+
+    subgraph Scaling["Scaling Advantages"]
+        D1[Modular Expansion<br/>Add Containers Incrementally]
+        D2[No Facility Redesign<br/>Plug-and-Play Architecture]
+        D3[Rapid Deployment<br/>16 Weeks per Container]
+        D4[Economies of Scale<br/>Shared Infrastructure Reduces Cost]
+
+        D1 --> D2
+        D2 --> D3
+        D3 --> D4
+    end
+
+    EntryLevel --> Professional
+    Professional --> Enterprise
+
+    EntryLevel -.-> Scaling
+    Professional -.-> Scaling
+    Enterprise -.-> Scaling
+
+    style A1 fill:#81c784
+    style A2 fill:#81c784
+    style A3 fill:#81c784
+    style A4 fill:#81c784
+    style A5 fill:#81c784
+    style A6 fill:#81c784
+
+    style B1 fill:#64b5f6
+    style B2 fill:#64b5f6
+    style B3 fill:#64b5f6
+    style B4 fill:#64b5f6
+    style B5 fill:#64b5f6
+
+    style C1 fill:#ba68c8
+    style C2 fill:#ba68c8
+    style C3 fill:#ba68c8
+    style C4 fill:#ba68c8
+    style C5 fill:#ba68c8
+    style C6 fill:#ba68c8
+
+    style D1 fill:#ffb74d
+    style D2 fill:#ffb74d
+    style D3 fill:#ffb74d
+    style D4 fill:#ffb74d
