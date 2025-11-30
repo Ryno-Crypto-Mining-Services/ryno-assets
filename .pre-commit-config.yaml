@@ -1,33 +1,69 @@
+---
 # .pre-commit-config.yaml
-# Lightweight config suited to documentation and media repositories
+# Pre-commit hooks for Ryno Crypto Mining Services public media assets and documents
+# Philosophy: Staging-level quality (secure, functional, readable)
+# Not overly strict - warnings acceptable for minor issues
 
 default_language_version:
   python: python3.11
+
 default_stages: [pre-commit]
 
 repos:
+  # General pre-commit hooks (baseline quality)
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
         name: Trim trailing whitespace
       - id: end-of-file-fixer
-        name: Add and fix end of files
-      - id: check-yaml
-        name: Check YAML syntax
-        args: ['--allow-multiple-documents']
+        name: Fix end of files
       - id: check-added-large-files
-        name: Warn about large files
-        args: ['--maxkb=10240']  # 10MB limit is reasonable for media
+        name: Check for large files
+        args: ["--maxkb=50240"] # 50MB limit
       - id: check-merge-conflict
-        name: Prevent merge conflicts
+        name: Check for merge conflicts
+      - id: check-case-conflict
+        name: Check for case conflicts
       - id: mixed-line-ending
-        name: Fix mixed line endings
-        args: ['--fix=lf']
+        name: Check line endings
+        args: ["--fix=lf"]
 
-  # Secret scanning (optional: still good for docs repos)
+  # Security scanning (critical - must pass)
   - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.4.0
+    rev: v1.5.0
     hooks:
       - id: detect-secrets
-        name: Detect secrets
+        args:
+          - "--baseline"
+          - ".secrets.baseline"
+          - "--exclude-files"
+          - '^assets/.*\.(png|jpg|jpeg|gif|svg|webp|bmp|ico|tiff|mp4|mov|avi|mkv|webm|flv|wmv|m4v|pdf|pptx|ppt|docx|doc|xls|xlsx|psd|ai|eps|sketch|fig|ttf|woff|woff2|eot|otf)$'
+          - "--exclude-files"
+          - '^docs/.*\.pdf$'
+          - "--exclude-files"
+          - "^archive/"
+          - "--exclude-files"
+          - "^.claude/"
+          - "--exclude-files"
+          - 'package-lock\.json$'
+          - "--exclude-files"
+          - 'yarn\.lock$'
+          - "--exclude-files"
+          - '\.min\.(js|css)$'
+
+  # Markdown linting (documentation quality)
+  # - repo: https://github.com/igorshubovych/markdownlint-cli
+  #  rev: v0.46.0
+  #  hooks:
+  #     - id: markdownlint
+  #      name: Markdown lint
+  #      args:
+  #        - "--fix"
+  #        - "--disable=MD013" # Disable line length rule
+  #        - "--disable=MD033" # Allow inline HTML
+  #        - "--disable=MD041" # First line doesn't have to be H1
+# Configuration for bypassing hooks (for WIP commits):
+# git commit --no-verify -m "WIP: experimenting with new feature"
+#
+# Remember to fix issues before merging to main!

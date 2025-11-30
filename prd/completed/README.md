@@ -12,6 +12,7 @@ This directory contains Product Requirements Documents (PRDs) for features, serv
 ## Definition
 
 **Completed PRDs** are:
+
 - Features successfully deployed to production
 - Products that have launched and are operational
 - Services actively running and serving users
@@ -47,6 +48,7 @@ All files in this directory must follow the CLAUDE.md naming standards:
 **Pattern:** `[org]-[product]-[category]-[title]-[version].md`
 
 **Examples:**
+
 ```
 ryno-crypto-prd-smart-contract-v1-0.md
 ths-stack-prd-data-pipeline-v2-0.md
@@ -54,11 +56,13 @@ terrahash-mining-prd-cooling-system-v1-2.md
 ```
 
 **Version Reflects:**
+
 - The **final version** at time of completion
 - All iterations and scope changes during development
 - Use `.md` extension for markdown files
 
 **Optional Completion Suffix:**
+
 ```
 ryno-crypto-prd-smart-contract-v1-0-completed-2025-11-09.md
 ```
@@ -177,6 +181,7 @@ Use these status labels in completed PRD frontmatter:
 - Major lessons learned emerge over time
 
 **Do NOT:**
+
 - Reopen completed PRDs for new features (create new PRD)
 - Significantly alter original requirements (preserve history)
 - Remove completed PRDs (archive indefinitely)

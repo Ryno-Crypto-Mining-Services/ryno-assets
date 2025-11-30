@@ -307,6 +307,7 @@ The reorganization does not affect repository functionality but significantly im
 This session focused on organizing remaining files from the SORT/ directory and standardizing Nostr publication files.
 
 #### Directory Structure Created
+
 - `docs/guides/customer-forms/` - New directory for customer templates and forms
 - `assets/diagrams/architecture/` - Verified/created for technical diagrams
 - `assets/diagrams/infographics/` - Verified/created for infographic images
@@ -315,33 +316,40 @@ This session focused on organizing remaining files from the SORT/ directory and 
 #### Files Renamed and Relocated
 
 **Nostr Publication Files (2 files):**
+
 - Renamed: `Nostr-Article-TerraHashStack_Retrofitting_Upgrade_Automate_Survive.md` → `ths-stack-article-retrofit-survival-guide-v1-0.md`
 - Renamed: `Nostr-Article-TerraHashStack_Retrofitting_Upgrade_Automate_Survive.pdf` → `ths-stack-article-retrofit-survival-guide-v1-0.pdf`
 - Location: `docs/publications/articles/nostr/`
 
 **Customer Forms (1 file):**
+
 - Moved and renamed: `SORT/Retrofit-Checklist.md` → `docs/guides/customer-forms/ths-stack-customer-retrofit-checklist-v1-0.md`
 
 **Infographic Images (3 files):**
+
 - Moved and renamed: `SORT/brainsos-performance-tuning.png` → `assets/diagrams/infographics/ths-stack-brainsos-tuning-infographic-2848x1600-v1-0.jpg`
 - Moved and renamed: `SORT/TerraHash_Stack_retrofit_investment_and_payback_timeline_visualization.png` → `assets/diagrams/infographics/ths-stack-retrofit-roi-timeline-infographic-2304x1728-v1-0.jpg`
 - Moved and renamed: `SORT/terrahashstack-four-pillars.png` → `assets/diagrams/infographics/ths-stack-four-pillars-infographic-2848x1600-v1-0.jpg`
 
 **Architecture Diagrams (4 files):**
+
 - Moved and renamed: `SORT/chilldyne-negative-pressure.png` → `assets/diagrams/architecture/ths-stack-chilldyne-cooling-diagram-1344x768-v1-0.png`
 - Moved and renamed: `SORT/Hash_Ribbons_indicator_driving_automated_treasury_management_decisions.png` → `assets/diagrams/architecture/ths-stack-hash-ribbons-treasury-diagram-2304x1728-v1-0.jpg`
 - Moved and renamed: `SORT/terrahashstack_AI_operations_dashboard_showing_autonomous_monitoring_metrics.png` → `assets/diagrams/architecture/ths-stack-ai-operations-dashboard-screenshot-2848x1600-v1-0.jpg`
 - Moved and renamed: `SORT/retrofitting-before-and-after.png` → `assets/diagrams/architecture/ths-stack-retrofit-comparison-diagram-2848x1600-v1-0.jpg`
 
 **Banner Images (1 file):**
+
 - Moved and renamed: `SORT/terrahash_stack-upgrade_automate_survive.png` → `assets/images/terrahash-stack/banners/ths-stack-upgrade-automate-survive-banner-992x1056-v1-0.png`
 
 #### Cleanup Operations
+
 - Successfully deleted `SORT/` directory after all files were relocated
 
 ## Files Modified (2025-11-10)
 
 ### New Files Created
+
 - `docs/guides/customer-forms/ths-stack-customer-retrofit-checklist-v1-0.md` - Relocated from SORT/
 - `assets/diagrams/infographics/ths-stack-brainsos-tuning-infographic-2848x1600-v1-0.jpg` - Relocated from SORT/
 - `assets/diagrams/infographics/ths-stack-four-pillars-infographic-2848x1600-v1-0.jpg` - Relocated from SORT/
@@ -353,16 +361,20 @@ This session focused on organizing remaining files from the SORT/ directory and 
 - `assets/images/terrahash-stack/banners/ths-stack-upgrade-automate-survive-banner-992x1056-v1-0.png` - Relocated from SORT/
 
 ### Files Renamed (In Place)
+
 - `docs/publications/articles/nostr/ths-stack-article-retrofit-survival-guide-v1-0.md` - Previously named with PascalCase and underscores
 - `docs/publications/articles/nostr/ths-stack-article-retrofit-survival-guide-v1-0.pdf` - Previously named with PascalCase and underscores
 
 ### Directories Removed
+
 - `SORT/` - Temporary holding directory, now empty and deleted
 
 ## Technical Decisions (2025-11-10)
 
 ### File Naming Standards Applied
+
 All files were renamed to comply with CLAUDE.md naming conventions:
+
 - **Lowercase only** - No uppercase letters in filenames
 - **Hyphen-separated** - Replaced underscores and spaces with hyphens
 - **Semantic versioning** - Added `v1-0` version identifiers
@@ -371,16 +383,19 @@ All files were renamed to comply with CLAUDE.md naming conventions:
 - **Organization prefix** - Used `ths-stack` (TerraHash Stack) for all TerraHash-related files
 
 ### Directory Structure Rationalization
+
 - **Customer forms** - Created dedicated directory under `docs/guides/` for templates and checklists
 - **Image categorization** - Separated images by type (infographics, diagrams, banners) rather than keeping them in a flat structure
 - **Architecture diagrams** - Distinguished technical diagrams from marketing infographics
 
 ### File Extension Corrections
+
 Multiple files had `.png` extensions but were actually JPEG format. These were corrected during the rename process to maintain transparency and accuracy.
 
 ## Work Remaining (Updated 2025-11-10)
 
 ### TODO
+
 - [x] Reorganize SORT/ directory
 - [x] Rename Nostr publication files
 - [ ] Commit all reorganized files to git
@@ -390,6 +405,7 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 - [ ] Create example files in `/examples/` directory
 
 ### Next Steps
+
 1. Stage and commit all changes with descriptive commit message
 2. Push to remote repository
 3. Verify CI/CD pipeline passes with new file structure
@@ -404,6 +420,7 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 **Recent HEAD commit**: 3254dc0 (feat: add OPSEC agents, policy initiator, and TerraHash technical diagrams)
 
 ### Changes Summary
+
 - 2 files renamed in place (Nostr article .md and .pdf)
 - 9 files moved from SORT/ to proper locations with standardized names
 - 3 new directory paths created
@@ -451,7 +468,7 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 
 ### Implementation Scripts
 
-3. **Extracted & Created**: `organization_sanitation_agent.py`
+1. **Extracted & Created**: `organization_sanitation_agent.py`
    - Extracted 700 lines of Python from organization-sanitation-agent.md
    - Added session context loading from environment variable
    - Tested successfully - scans repository and generates reports
@@ -459,19 +476,19 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 
 ### Documentation Reorganization
 
-4. **Moved**: Old policy-initiator.md to historical documentation
+1. **Moved**: Old policy-initiator.md to historical documentation
    - From: `.claude/commands/policy-initiator.md` (48KB v2.0 update report)
    - To: `docs/development/policy-initiator-v2-update-report.md`
    - Preserved as reference for design decisions
 
-5. **Updated**: Repository standards
+2. **Updated**: Repository standards
    - Modified `.gitignore` to exclude `ORGANIZATION_AUDIT_REPORT.md`
    - Updated `CLAUDE.md` (minor formatting)
    - Added `docs/claude` submodule (Claude Code templates)
 
 ### Testing
 
-6. **Validated Components**
+1. **Validated Components**
    - ✅ `organization_sanitation_agent.py --help` works
    - ✅ Dry-run audit mode executes successfully
    - ✅ Detected 172 issues (68 naming, 102 relocations, 2 redactions)
@@ -479,7 +496,7 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 
 ### Git Operations
 
-7. **Committed & Pushed**
+1. **Committed & Pushed**
    - Commit: 7f45e53 "refactor: optimize OPSEC commands and agents per Claude Code best practices"
    - Comprehensive commit message with implementation details
    - All changes pushed to origin/main successfully
@@ -489,19 +506,23 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 ## Files Modified
 
 ### Commands
+
 - `.claude/commands/close-session.md` - Created (adapted from template, ~460 lines)
 - `.claude/commands/policy-initiator.md` - Created (new orchestration, ~250 lines)
 - `.claude/commands/session-close.md` - Deleted (renamed to close-session.md)
 
 ### Scripts
+
 - `scripts/organization_sanitation_agent.py` - Created (~930 lines, extracted + enhanced)
 
 ### Documentation
+
 - `docs/development/policy-initiator-v2-update-report.md` - Moved from .claude/commands/
 - `CLAUDE.md` - Updated (minor formatting)
 - `.gitignore` - Updated (exclude audit reports)
 
 ### Repository Structure
+
 - `.gitmodules` - Added (docs/claude submodule)
 - `docs/claude/` - Added (Claude Code templates submodule)
 
@@ -510,8 +531,10 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 ## Technical Decisions
 
 ### 1. Separation of Concerns
+
 **Decision**: Separate command definitions, agent specifications, and implementation scripts
 **Rationale**:
+
 - Commands orchestrate workflows (what to do)
 - Agents define interfaces and responsibilities (how to operate)
 - Scripts implement functionality (actual code)
@@ -519,23 +542,29 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 - Easier to maintain and test each layer independently
 
 ### 2. Adaptation for Documentation Repository
+
 **Decision**: Remove code-specific elements, focus on doc/media concerns
 **Rationale**:
+
 - This is not a software development repository
 - Primary concerns: documentation quality, file naming, media organization, OPSEC
 - Removed: test suites, builds, linting, CI/CD, code review
 - Added: doc validation, naming checks, media management, content sanitization
 
 ### 3. File Naming: close-session vs session-close
+
 **Decision**: Use `close-session.md` to match template naming
 **Rationale**:
+
 - Consistency with docs/claude/commands-templates/close-session.md
 - Verb-noun pattern is Claude Code standard
 - Easier to find in alphabetical listings
 
 ### 4. Policy Initiator Structure
+
 **Decision**: Phase-based orchestration with user prompts
 **Rationale**:
+
 - Clear, sequential workflow
 - User control at each decision point
 - Supports parallel execution where safe
@@ -543,8 +572,10 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 - Better for documentation work (less automation, more review)
 
 ### 5. Session Context Passing
+
 **Decision**: Use environment variables for SESSION_CONTEXT
 **Rationale**:
+
 - Secure (no file artifacts)
 - Standard cross-platform mechanism
 - JSON format for structured data
@@ -555,12 +586,14 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 ## Work Remaining
 
 ### TODO
+
 - [ ] Optimize data-breach-agent.md (779 → ~180 lines)
 - [ ] Optimize organization-sanitation-agent.md (1330 → ~200 lines)
 - [ ] Archive old policy_initiator.py to archive/scripts/
 - [ ] Consider additional commands: search.md, cleanup.md for doc/media context
 
 ### Next Session Priorities
+
 1. **High**: Complete agent optimization (data-breach, organization)
 2. **Medium**: Archive old policy_initiator.py
 3. **Low**: Add relevant commands from templates if needed
@@ -625,7 +658,7 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 
 ### Script Archival
 
-3. **Archived**: Old policy_initiator.py script
+1. **Archived**: Old policy_initiator.py script
    - **From**: `scripts/policy_initiator.py`
    - **To**: `archive/scripts/policy_initiator_v1.py`
    - **Rationale**: Separation of concerns - orchestration now handled by commands, not standalone scripts
@@ -633,7 +666,7 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 
 ### Git Operations
 
-4. **Committed & Pushed**
+1. **Committed & Pushed**
    - **Commit**: 95dd73b "refactor: optimize OPSEC agent definitions per Claude Code best practices"
    - **Files Changed**: 3 (2 modified agents, 1 renamed script)
    - **Lines Changed**: +357 / -1,786
@@ -645,10 +678,12 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 ## Files Modified
 
 ### Agent Definitions
+
 - `.claude/agents/data-breach-agent.md` - Optimized (779 → 287 lines)
 - `.claude/agents/organization-sanitation-agent.md` - Optimized (1330 → 393 lines)
 
 ### Scripts
+
 - `scripts/policy_initiator.py` - Archived to `archive/scripts/policy_initiator_v1.py`
 
 ---
@@ -656,8 +691,10 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 ## Technical Decisions
 
 ### 1. Separation of Concerns Architecture
+
 **Decision**: Agent files contain only interface specifications, not implementations
 **Rationale**:
+
 - **Commands** (`.claude/commands/`) - Orchestrate workflows
 - **Agents** (`.claude/agents/`) - Define interfaces, responsibilities, I/O specs
 - **Scripts** (`scripts/`) - Implement functionality
@@ -666,22 +703,27 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 - Clear responsibility boundaries
 
 **Benefits**:
+
 - Agent files now readable and navigable (~200-400 lines vs 800-1300 lines)
 - Implementation details in proper Python modules
 - Can update implementation without touching agent specs
 - Better for AI agent consumption (clear, concise specs)
 
 ### 2. Documentation Repository Focus
+
 **Decision**: Adapt agent descriptions for doc/media repository, not software development
 **Rationale**:
+
 - Primary concerns: file naming, media organization, content sanitization
 - Detection patterns focused on: financial data, vendor pricing, customer names, timelines
 - Output: OPSEC_ALERT.md, RECOVERY_PLAN.md, ORGANIZATION_AUDIT_REPORT.md
 - No code linting, test suites, or build pipelines
 
 ### 3. Interface Specification Pattern
+
 **Decision**: Use consistent structure across all agents
 **Sections**:
+
 - Mission statement
 - Agent responsibilities (numbered list)
 - Input specifications (env vars, CLI args, session context)
@@ -691,8 +733,10 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 - Metrics & maintenance schedule
 
 ### 4. Version Increment Strategy
+
 **Decision**: Bump to v2.0.0 for optimized agents
 **Rationale**:
+
 - Major structural change (embedded code → interface spec)
 - Breaking change in file organization
 - Clear signal that this is the new standard
@@ -703,6 +747,7 @@ Multiple files had `.png` extensions but were actually JPEG format. These were c
 ## Architectural Improvements
 
 ### Before Optimization
+
 ```
 Agent Definition Files (779-1330 lines each)
 ├── Mission & Responsibilities
@@ -713,12 +758,14 @@ Agent Definition Files (779-1330 lines each)
 ```
 
 **Problems**:
+
 - Mixing specification with implementation
 - Hard to read and navigate
 - Difficult to maintain (changes ripple across layers)
 - Not following Claude Code best practices
 
 ### After Optimization
+
 ```
 Agent Definition Files (~200-400 lines each)
 ├── Mission & Responsibilities
@@ -737,6 +784,7 @@ Implementation Scripts (scripts/*.py)
 ```
 
 **Benefits**:
+
 - ✅ Clear separation of concerns
 - ✅ Easy to read and understand
 - ✅ Simple to maintain and update
@@ -770,12 +818,14 @@ Implementation Scripts (scripts/*.py)
 ## Work Remaining
 
 ### Completed in This Session ✅
+
 - [x] Optimize data-breach-agent.md (779 → 287 lines)
 - [x] Optimize organization-sanitation-agent.md (1330 → 393 lines)
 - [x] Archive old policy_initiator.py to archive/scripts/
 - [x] Final commit and push optimized agents
 
 ### Future Work (Optional)
+
 - [ ] Consider adding agent templates to docs/claude if needed
 - [ ] Update agent documentation in README.md if desired
 - [ ] Add integration tests for scripts (if needed)
@@ -788,12 +838,14 @@ Implementation Scripts (scripts/*.py)
 **Commit**: 95dd73b
 **Commits this session**: 1 (comprehensive agent optimization)
 **Files changed**: 3
-  - 2 agent definitions modified
-  - 1 script archived (renamed)
+
+- 2 agent definitions modified
+- 1 script archived (renamed)
 **Lines changed**: +357 / -1,786
 **Status**: ✅ All changes committed and pushed
 
 **Commit Message Summary**:
+
 ```
 refactor: optimize OPSEC agent definitions per Claude Code best practices
 
@@ -808,6 +860,7 @@ refactor: optimize OPSEC agent definitions per Claude Code best practices
 ## Session Statistics
 
 **Total Optimization**:
+
 - Lines removed: 1,429 (from agent definitions)
 - Lines added: 357 (optimized interface specs)
 - Net reduction: -1,072 lines (-71% overall)
@@ -815,6 +868,7 @@ refactor: optimize OPSEC agent definitions per Claude Code best practices
 - Files archived: 1 implementation script
 
 **Time Breakdown**:
+
 - Reading and analyzing original files: ~30 min
 - Optimizing data-breach-agent.md: ~30 min
 - Optimizing organization-sanitation-agent.md: ~45 min
@@ -826,17 +880,20 @@ refactor: optimize OPSEC agent definitions per Claude Code best practices
 ## Key Learnings
 
 ### What Went Well
+
 1. **Clear separation** of agent specs from implementation made optimization straightforward
 2. **Consistent pattern** emerged across both agents, making structure predictable
 3. **Version bumping** to 2.0.0 clearly signals architectural change
 4. **Pre-commit hooks** caught formatting issues automatically
 
 ### Challenges Encountered
+
 1. **Large embedded code blocks** required careful extraction to ensure no loss of functionality
 2. **Balance** between conciseness and completeness in interface specs
 3. **Cross-referencing** implementation scripts accurately
 
 ### For Future Sessions
+
 - Agent optimization pattern now established, can be template for future agents
 - Separation of concerns architecture proven effective
 - Version 2.0.0 standard for optimized agents
@@ -846,17 +903,20 @@ refactor: optimize OPSEC agent definitions per Claude Code best practices
 ## Compliance Status
 
 ✅ **Claude Code Best Practices**: Fully compliant
+
 - Separation of concerns: Commands / Agents / Scripts
 - Agent files: Interface specifications only
 - Implementation: Proper Python modules in scripts/
 - Version control: Semantic versioning applied
 
 ✅ **CLAUDE.md Standards**: Maintained
+
 - File naming conventions: Compliant
 - Version format: v2-0-0 in metadata
 - Documentation quality: High
 
 ✅ **Git Hygiene**:
+
 - Descriptive commit messages
 - Pre-commit hooks passing
 - All changes pushed to remote

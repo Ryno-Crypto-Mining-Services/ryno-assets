@@ -20,6 +20,7 @@ This document provides a comprehensive analysis of the requested updates to `pol
 **Request:** Review session-close.md for context on previously completed work and provide it to executed agents.
 
 **Implementation:**
+
 - **Phase 0 Added:** New initial phase that reads and parses session-close.md
 - **Context Loading:** Reads session-work.md from previous sessions to understand work history
 - **Agent Integration:** Session context passed to both data-breach-agent.md and organization-sanitation-agent.md via environment variables
@@ -29,6 +30,7 @@ This document provides a comprehensive analysis of the requested updates to `pol
   - Better decision-making with context
 
 **Code Example:**
+
 ```python
 def _phase0_session_context(self) -> bool:
     """Phase 0: Review session-close.md for context"""
@@ -46,6 +48,7 @@ def _phase0_session_context(self) -> bool:
 **Request:** Prompt user to choose between full execution of both agents, data breach only, or organization only.
 
 **Implementation:**
+
 - **Phase 1 Added:** Interactive prompt for agent selection
 - **Four Execution Modes:**
   1. Full execution (both agents)
@@ -56,6 +59,7 @@ def _phase0_session_context(self) -> bool:
 - **CLI Override:** Can specify mode with `--mode` flag
 
 **User Experience:**
+
 ```
 Select agent execution mode:
   1. Full execution (Data Breach + Organization agents)
@@ -71,6 +75,7 @@ Enter choice (1-4):
 **Request:** Execute session-close.md command after completing agent work.
 
 **Implementation:**
+
 - **Phase 6 Modified:** Now executes full session-close workflow
 - **Session Documentation:** Creates comprehensive session-work.md summary
 - **Automated Steps:**
@@ -82,6 +87,7 @@ Enter choice (1-4):
 - **Auto-staging:** session-work.md automatically staged for commit
 
 **Workflow Integration:**
+
 ```
 Phase 6: Session Close Workflow
 ├── Check git status
@@ -96,6 +102,7 @@ Phase 6: Session Close Workflow
 **Request:** After session close, prompt user for git commit and push approval.
 
 **Implementation:**
+
 - **Phase 7 Modified:** Now includes two separate prompts
 - **Commit Prompt:** User reviews and approves commit
 - **Push Prompt:** User decides whether to push to remote
@@ -104,6 +111,7 @@ Phase 6: Session Close Workflow
 - **Local Commit Option:** Can commit without pushing
 
 **User Interaction:**
+
 ```
 📝 Proposed commit message:
 ----------------------------------------------------------------------
@@ -124,6 +132,7 @@ Pushing to: origin/main
 ## Updated Pipeline Flow
 
 ### Version 1.0 (6 phases)
+
 ```
 Phase 1: Data Breach Detection
 Phase 2: Organization & Sanitization
@@ -134,6 +143,7 @@ Phase 6: Git Push
 ```
 
 ### Version 2.0 (7 phases + Phase 0)
+
 ```
 Phase 0: Session Context Review ← NEW
 Phase 1: Agent Execution Selection ← NEW
@@ -328,28 +338,33 @@ ryno-assets/
 ### Deployment Steps
 
 1. **Backup Current Version**
+
    ```bash
    cp .claude/commands/policy-initiator.md .claude/commands/policy-initiator-v1.0-backup.md
    ```
 
 2. **Update Command File**
+
    ```bash
    # Copy new policy-initiator.md content to:
    .claude/commands/policy-initiator.md
    ```
 
 3. **Update Python Script**
+
    ```bash
    # Update scripts/policy_initiator.py with v2.0 implementation
    chmod +x scripts/policy_initiator.py
    ```
 
 4. **Test Installation**
+
    ```bash
    python3 scripts/policy_initiator.py --help
    ```
 
 5. **Update Aliases** (optional)
+
    ```bash
    git config alias.commit-safe '!python3 scripts/policy_initiator.py'
    ```
@@ -361,6 +376,7 @@ ryno-assets/
 ### For Existing Users
 
 **v1.0 command:**
+
 ```bash
 git add .
 python3 scripts/policy_initiator.py
@@ -368,6 +384,7 @@ python3 scripts/policy_initiator.py
 ```
 
 **v2.0 equivalent (auto-mode):**
+
 ```bash
 git add .
 python3 scripts/policy_initiator.py --auto
@@ -375,6 +392,7 @@ python3 scripts/policy_initiator.py --auto
 ```
 
 **v2.0 interactive mode:**
+
 ```bash
 git add .
 python3 scripts/policy_initiator.py
@@ -400,6 +418,7 @@ python3 scripts/policy_initiator.py
 ### Test Scenarios
 
 1. **Basic Functionality**
+
    ```bash
    # Create test file
    echo "# Test" > test.md
@@ -412,6 +431,7 @@ python3 scripts/policy_initiator.py
    ```
 
 2. **Session Context**
+
    ```bash
    # Verify session context loading
    # Check that previous session-work.md is read
@@ -420,6 +440,7 @@ python3 scripts/policy_initiator.py
    ```
 
 3. **User Prompts**
+
    ```bash
    # Test abort at each decision point
    python3 scripts/policy_initiator.py
@@ -427,6 +448,7 @@ python3 scripts/policy_initiator.py
    ```
 
 4. **Auto Mode**
+
    ```bash
    # Verify no prompts in auto mode
    python3 scripts/policy_initiator.py --auto
@@ -490,16 +512,19 @@ python3 scripts/policy_initiator.py
 ### Common Issues
 
 **Issue: "Session context not found"**
+
 - First run of v2.0 (expected)
 - Creates session-work.md after first execution
 - Subsequent runs will have context
 
 **Issue: "Agent execution failed"**
+
 - Check agent scripts exist
 - Verify Python dependencies
 - Review agent logs
 
 **Issue: "Commit/push prompts not appearing"**
+
 - Check if `--auto` flag used
 - Verify interactive terminal
 - Check for input redirections
@@ -507,7 +532,7 @@ python3 scripts/policy_initiator.py
 ### Getting Help
 
 - **GitHub Issues:** Label with `policy-initiator-v2`
-- **Email:** support@rynocrypto.com
+- **Email:** <support@rynocrypto.com>
 - **Documentation:** `.claude/commands/policy-initiator.md`
 
 ---
@@ -543,12 +568,14 @@ The complete updated `policy-initiator.md` file is 48,819 characters and include
 ## Appendix B: Version History
 
 **v1.0.0** (2025-11-09)
+
 - Initial release
 - 6-phase pipeline
 - Automated execution
 - Basic documentation
 
 **v2.0.0** (2025-11-10)
+
 - Session context integration
 - Flexible agent execution
 - Integrated session close

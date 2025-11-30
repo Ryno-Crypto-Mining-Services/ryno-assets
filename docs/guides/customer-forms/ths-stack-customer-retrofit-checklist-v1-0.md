@@ -1,9 +1,11 @@
 # Retrofit Readiness Checklist
+
 ## TerraHash Stack Site Assessment
 
 ### Pre-Assessment Information Gathering
 
 **Facility Profile**
+
 - [ ] Total facility capacity (MW): _______
 - [ ] Current power consumption (MW): _______
 - [ ] Number of mining sites/locations: _______
@@ -15,6 +17,7 @@
   - [ ] Other: _______
 
 **Current Cooling Infrastructure**
+
 - [ ] Cooling method:
   - [ ] Air cooling (HVAC)
   - [ ] Evaporative cooling
@@ -27,6 +30,7 @@
   - If yes, describe: _______________________________
 
 **ASIC Inventory**
+
 - [ ] Primary ASIC models (list all):
   - Model: _______ Quantity: _______ Age: _______
   - Model: _______ Quantity: _______ Age: _______
@@ -36,6 +40,7 @@
 - [ ] Current firmware: [ ] Stock [ ] BraiinsOS [ ] VNish [ ] LuxOS [ ] Other: _______
 
 **Electrical Infrastructure**
+
 - [ ] Incoming voltage/phase: _______V, _______-phase
 - [ ] Main panel capacity: _______A
 - [ ] PDU configuration:
@@ -45,6 +50,7 @@
 - [ ] Existing electrical monitoring? [ ] Yes [ ] No
 
 **Network & Monitoring**
+
 - [ ] Network topology:
   - [ ] Flat network
   - [ ] VLANs
@@ -68,6 +74,7 @@
 - [ ] Average hashrate capacity utilization (%): _______
 
 **Economic Baseline**
+
 - [ ] Current electricity rate ($/kWh): _______
 - [ ] Current cost per BTC mined ($): _______
 - [ ] Current labor (FTE allocated to mining ops): _______
@@ -75,6 +82,7 @@
 - [ ] Average ASIC replacement cycle (months): _______
 
 **Space & Structural**
+
 - [ ] Available floor space (sq ft or sq m): _______
 - [ ] Ceiling height: _______ ft/m
 - [ ] Floor load rating (lbs/sq ft or kg/sq m): _______
@@ -82,6 +90,7 @@
 - [ ] Structural modifications acceptable? [ ] Yes [ ] No
 
 **Operational Constraints**
+
 - [ ] Maximum acceptable downtime during retrofit: _______ days/weeks
 - [ ] Phased deployment required? [ ] Yes [ ] No
 - [ ] Critical operational windows (cannot interrupt): _______
@@ -89,6 +98,7 @@
 
 **Goals & Priorities**
 Rank the following (1 = highest priority, 5 = lowest):
+
 - [ ] __ Efficiency improvement (reduce J/TH)
 - [ ] __ Uptime/reliability improvement
 - [ ] __ Cost reduction per BTC
@@ -96,6 +106,7 @@ Rank the following (1 = highest priority, 5 = lowest):
 - [ ] __ Equipment lifespan extension
 
 **Budget & Financing**
+
 - [ ] Estimated budget for retrofit: $_______
 - [ ] Budget flexibility: [ ] Fixed [ ] Flexible [ ] TBD
 - [ ] Financing options of interest:
@@ -107,6 +118,7 @@ Rank the following (1 = highest priority, 5 = lowest):
 
 **Site Documentation**
 Please provide (if available):
+
 - [ ] Facility floor plan/layout drawings
 - [ ] Electrical single-line diagram
 - [ ] Current rack configuration map
@@ -120,6 +132,7 @@ Please provide (if available):
 ## Assessment Timeline
 
 **Upon submission of this checklist:**
+
 1. **Initial Review (1-2 business days):** Preliminary feasibility assessment
 2. **Remote Assessment (5-7 business days):** Detailed review of documentation, video walkthrough
 3. **Preliminary Design (7-10 business days):** Initial retrofit design with budgetary pricing
@@ -141,7 +154,7 @@ All TerraHash Stack retrofits include:
 ## Next Steps
 
 **Submit this checklist to:**
-📧 Email: retrofit@ryno.com
+📧 Email: <retrofit@ryno.com>
 💬 Nostr: npub[your-npub-here]
 🌐 Web: ryno.com/retrofit-assessment
 
@@ -158,24 +171,28 @@ Schedule a 30-minute consultation: [calendly-link]
 ## Appendix: Common Retrofit Scenarios
 
 ### Scenario A: Container-Based Air-Cooled (5-10 MW)
+
 - **Typical Investment:** $400K-$550K per MW
 - **Timeline:** 12-14 weeks
 - **Key Upgrades:** Chilldyne CDU-1500, modular chassis, BraiinsOS+, AI platform
 - **Expected Outcome:** 18.5 → 14.2 J/TH, 88% → 99% uptime
 
 ### Scenario B: Warehouse Hot/Cold Aisle (25+ MW)
+
 - **Typical Investment:** $360K-$480K per MW
 - **Timeline:** 20-24 weeks (phased by zone)
 - **Key Upgrades:** Multiple CDU units, centralized cooling plant, full automation
 - **Expected Outcome:** 19.2 → 13.8 J/TH, 90% → 99% uptime
 
 ### Scenario C: Partial Immersion Hybrid (10-15 MW)
+
 - **Typical Investment:** $420K-$620K per MW (mixed zones)
 - **Timeline:** 14-18 weeks
 - **Key Upgrades:** Fog Hashing/HashHouse tanks (high-density), standardized management
 - **Expected Outcome:** Mixed efficiency (13.5-16.8 J/TH), 92% → 99% uptime
 
 ### Scenario D: Legacy Fleet Modernization (S9/S17)
+
 - **Typical Investment:** $500K-$750K (infrastructure + new ASICs) or $150-$220K (immersion for life extension)
 - **Timeline:** 8-16 weeks depending on path
 - **Key Decision:** Extend life with immersion vs. full hardware refresh

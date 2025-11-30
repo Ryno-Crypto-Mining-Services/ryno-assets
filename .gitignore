@@ -1,2 +1,3 @@
 .DS_Store
+.secrets.baseline
 ORGANIZATION_AUDIT_REPORT.md

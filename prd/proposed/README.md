@@ -12,6 +12,7 @@ This directory contains Product Requirements Documents (PRDs) for features, serv
 ## Definition
 
 **Proposed PRDs** are:
+
 - Ideas and concepts in early exploration
 - Features being researched and evaluated
 - Products undergoing feasibility analysis
@@ -47,6 +48,7 @@ All files in this directory must follow the CLAUDE.md naming standards:
 **Pattern:** `[org]-[product]-[category]-[title]-[version].md`
 
 **Examples:**
+
 ```
 ryno-crypto-prd-smart-contract-v1-0.md
 ths-stack-prd-data-pipeline-v1-0.md
@@ -54,6 +56,7 @@ terrahash-mining-prd-cooling-system-v1-0.md
 ```
 
 **Required Components:**
+
 - Use **lowercase** only
 - Replace spaces with **hyphens** (`-`)
 - Include **semantic versioning** (`v1-0`, `v1-1`, `v2-0`)
