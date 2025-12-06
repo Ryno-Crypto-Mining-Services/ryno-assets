@@ -18,12 +18,14 @@ Monitor and enforce the **75% Open Source / 25% Proprietary** balance defined in
 ### 1. Repository Monitoring
 
 **Trigger Conditions:**
+
 - Pre-commit hook execution
 - Scheduled daily scans (GitHub Actions)
 - Manual execution via `/policy-initiator` command
 - Session closure (`/close-session` command)
 
 **Scan Scope:**
+
 - All repository files (documentation, media assets, configuration files)
 - Commit history for recently added content
 - File metadata and naming patterns
@@ -43,6 +45,7 @@ Monitor and enforce the **75% Open Source / 25% Proprietary** balance defined in
 | **Partnerships** | `chilldyne_exclusive`, `braiins_custom`, `licensing_agreement`, `vendor_contract` | MEDIUM |
 
 **File Type Risk Assessment:**
+
 - **CRITICAL:** `.py`, `.js`, `.pkl`, `.h5`, `.bin`, `.xlsx` (with financial data)
 - **HIGH:** `.pdf` (business plans, contracts), `.pptx` (investor decks)
 - **MEDIUM:** `.md` (detailed PRDs, architecture specs with proprietary algorithms)
@@ -51,6 +54,7 @@ Monitor and enforce the **75% Open Source / 25% Proprietary** balance defined in
 ### 3. Automated Response Actions
 
 **Pre-Commit Detection:**
+
 ```bash
 # Block commit immediately
 echo "❌ COMMIT BLOCKED: Proprietary content detected in [file]"
@@ -58,6 +62,7 @@ exit 1
 ```
 
 **Post-Commit Remediation:**
+
 ```bash
 # Remove from repository
 git rm --cached <sensitive_file>
@@ -72,6 +77,7 @@ git push origin --force --all
 ```
 
 **Report Generation:**
+
 - `OPSEC_ALERT.md` - Incident summary and affected files
 - `RECOVERY_PLAN.md` - Phased remediation checklist
 - `POST_MORTEM.md` - Root cause analysis and prevention measures
@@ -81,17 +87,20 @@ git push origin --force --all
 ## Input Specifications
 
 **Environment Variables:**
+
 ```bash
 SESSION_CONTEXT    # JSON containing session metadata (optional)
 REPO_PATH          # Repository root path (default: current directory)
 ```
 
 **Command-line Arguments:**
+
 ```bash
 python3 scripts/data_breach_agent.py [--repo-path PATH]
 ```
 
 **Session Context Structure (if provided):**
+
 ```json
 {
   "session_id": "session-2025-11-12-143022",
@@ -111,6 +120,7 @@ python3 scripts/data_breach_agent.py [--repo-path PATH]
 **Generated When:** Violations detected
 
 **Structure:**
+
 ```markdown
 # OPSEC Alert Report
 
@@ -147,6 +157,7 @@ python3 scripts/data_breach_agent.py [--repo-path PATH]
 **File:** `RECOVERY_PLAN.md`
 
 **Phases:**
+
 - **Phase 1 (0-24h):** Immediate containment, history scrubbing, force push
 - **Phase 2 (24-72h):** Impact assessment, fork monitoring, cache checking
 - **Phase 3 (72h-1wk):** Legal consultation, patent review, DMCA requests
@@ -158,6 +169,7 @@ python3 scripts/data_breach_agent.py [--repo-path PATH]
 **File:** `POST_MORTEM.md`
 
 **Sections:**
+
 - Incident summary and root cause analysis
 - Timeline of events (detection → containment → recovery)
 - Quantifiable damage assessment (technical, business, financial impact)
@@ -171,6 +183,7 @@ python3 scripts/data_breach_agent.py [--repo-path PATH]
 **Script Location:** `scripts/data_breach_agent.py`
 
 **Key Components:**
+
 1. **DataBreachAgent Class:** Repository scanner with pattern matching
 2. **Pattern Definitions:** Regex patterns for critical keywords (CRITICAL_PATTERNS dict)
 3. **File Risk Assessment:** Extension-based and filename-based risk scoring
@@ -178,6 +191,7 @@ python3 scripts/data_breach_agent.py [--repo-path PATH]
 5. **Session Context Loader:** Reads SESSION_CONTEXT environment variable (JSON)
 
 **Exit Codes:**
+
 - `0` - No violations detected (repository clean)
 - `1` - Violations detected (reports generated)
 
@@ -254,10 +268,12 @@ fi
 ## Archive Management
 
 **Trigger Conditions:**
+
 - Report files exceed 10,000 lines (OPSEC_ALERT), 5,000 lines (RECOVERY_PLAN, POST_MORTEM)
 - 90 days since last incident
 
 **Archive Process:**
+
 - Move reports to `opsec-archive/report-archive-{date-range}/`
 - Create fresh blank templates
 - Commit archive with descriptive message
@@ -267,12 +283,14 @@ fi
 ## Metrics & Reporting
 
 **Track Monthly:**
+
 - Total scans executed (pre-commit, daily, manual)
 - Violations detected and resolved
 - False positive rate
 - Average time to remediation
 
 **Quarterly Review:**
+
 - Policy effectiveness assessment
 - Training impact evaluation
 - Process improvement recommendations

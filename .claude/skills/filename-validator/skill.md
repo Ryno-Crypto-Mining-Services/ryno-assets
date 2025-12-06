@@ -23,6 +23,7 @@ This skill validates filenames against the comprehensive naming conventions defi
 ### Universal Requirements (All Files)
 
 **Required:**
+
 - ✅ Lowercase letters only
 - ✅ Hyphens (`-`) to separate words (no spaces)
 - ✅ Maximum 50 characters (excluding extension)
@@ -31,6 +32,7 @@ This skill validates filenames against the comprehensive naming conventions defi
 - ✅ Proper file extension matching content
 
 **Forbidden:**
+
 - ❌ Uppercase letters (except reserved: README, LICENSE, CONTRIBUTING, CHANGELOG, SECURITY)
 - ❌ Spaces (replace with hyphens)
 - ❌ Special characters: `* & % $ @ ! # ? ( ) [ ] { } ' " ; : < > | \ / ~`
@@ -43,6 +45,7 @@ This skill validates filenames against the comprehensive naming conventions defi
 **Pattern:** `[org]-[product]-[descriptor]-[type]-[resolution]-[version].[format]`
 
 **Components:**
+
 - `[org]`: Organization (`ryno`, `ths`, `terrahash`)
 - `[product]`: Product name (`crypto`, `stack`, `mining`)
 - `[descriptor]`: Content description (e.g., `smart-dip-buying`, `architecture`, `logo`)
@@ -52,6 +55,7 @@ This skill validates filenames against the comprehensive naming conventions defi
 - `[format]`: File extension (`png`, `jpg`, `svg`, `webp`, `gif`)
 
 **Valid Examples:**
+
 ```
 ryno-crypto-dip-buying-banner-1920x1080-v1-0.png
 ths-stack-architecture-diagram-2560x1440-v2-1.svg
@@ -60,6 +64,7 @@ ryno-crypto-logo-icon-512x512-v1-0.png
 ```
 
 **Invalid Examples:**
+
 ```
 ❌ Bear_Market_Strategy.png                    (underscores, uppercase, missing components)
 ❌ TerraHash-Logo.PNG                          (uppercase)
@@ -73,6 +78,7 @@ ryno-crypto-logo-icon-512x512-v1-0.png
 **Pattern:** `[org]-[product]-[category]-[title]-[version].[format]`
 
 **Components:**
+
 - `[org]`: Organization (`ryno`, `ths`, `terrahash`)
 - `[product]`: Product name (`crypto`, `stack`, `mining`)
 - `[category]`: Document type (`prd`, `specs`, `api-docs`, `guide`, `whitepaper`, `service`, `architecture`, `security`)
@@ -81,6 +87,7 @@ ryno-crypto-logo-icon-512x512-v1-0.png
 - `[format]`: File extension (`pdf`, `docx`, `txt`)
 
 **Valid Examples:**
+
 ```
 ryno-crypto-prd-smart-contract-v1-0.pdf
 ths-stack-specs-data-pipeline-v2-1.docx
@@ -93,11 +100,13 @@ ryno-crypto-api-docs-authentication-v3-0.md
 **Pattern:** `[category]-[title]-[date-optional].md`
 
 **Components:**
+
 - `[category]`: Document category (`prd`, `specs`, `guide`, `security`, `meeting-notes`, etc.)
 - `[title]`: Descriptive title with hyphens
 - `[date]`: Optional ISO 8601 date (YYYY-MM-DD) for time-sensitive content
 
 **Valid Examples:**
+
 ```
 prd-token-economics.md
 specs-api-gateway.md
@@ -109,6 +118,7 @@ meeting-notes-architecture-review-20251107.md
 ### Source Code Files
 
 Follow language-specific conventions:
+
 - **Python**: `snake_case.py` (exception: underscores allowed)
 - **JavaScript/TypeScript**: `kebab-case.js`, `kebab-case.ts`
 - **Configuration**: Standard names (`.gitignore`, `package.json`, etc.)
@@ -175,6 +185,7 @@ Create a structured report:
 ### Step 4: Return Results
 
 Provide:
+
 - List of valid files (ready to organize)
 - List of invalid files with specific issues
 - Suggested renames (when determinable)
@@ -246,6 +257,7 @@ find SORT/ -type f -name "*"
 ### Reserved Filenames (Skip Validation)
 
 These files are **exempt** from lowercase requirement:
+
 - README.md
 - LICENSE
 - CONTRIBUTING.md
@@ -264,6 +276,7 @@ These files are **exempt** from lowercase requirement:
 ## Integration with Other Skills
 
 This skill is designed to work with:
+
 - **file-renamer**: Takes validation output and performs renaming
 - **file-relocator**: Uses validation results to determine destination directories
 - **file-organizer**: Main orchestrator that uses this skill first
@@ -305,6 +318,7 @@ Return a JSON-like structure for programmatic use:
 ## Quality Assurance
 
 Before completing validation:
+
 - ✅ All files in target directory scanned
 - ✅ Validation rules applied consistently
 - ✅ Clear feedback provided for each violation
@@ -315,6 +329,7 @@ Before completing validation:
 ---
 
 **Related Documentation:**
+
 - CLAUDE.md (File naming conventions)
 - .claude/skills/file-renamer/skill.md
 - .claude/skills/file-organizer/skill.md

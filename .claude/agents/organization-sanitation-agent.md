@@ -20,6 +20,7 @@ Maintain repository organization, enforce file naming standards defined in CLAUD
 **Objective:** Ensure all files are in correct directories per CLAUDE.md standards.
 
 **Expected Structure:**
+
 ```
 docs/          # Documentation (architecture, api, guides, security, operations, research)
 assets/        # Media assets (images, diagrams, videos) organized by product
@@ -31,6 +32,7 @@ archive/       # Deprecated content
 ```
 
 **Actions:**
+
 - Scan for misplaced files and generate relocation recommendations
 - Create missing directories
 - Update internal references after relocations
@@ -46,6 +48,7 @@ archive/       # Deprecated content
 | **Markdown** | `[category]-[title]-[date-optional].md` | `prd-treasury-management.md` |
 
 **Common Violations:**
+
 - Spaces in filenames → Replace with hyphens
 - Uppercase letters → Convert to lowercase
 - Underscores → Replace with hyphens
@@ -68,6 +71,7 @@ archive/       # Deprecated content
 | **Personnel & Org** | Internal emails, phone numbers, org charts, compensation | LOW |
 
 **Detection Patterns:**
+
 ```regex
 # Financial: \$\d{1,3}(,\d{3})+\.\d{2} | \d+%\s+margin | CAC\s+of\s+\$\d+
 # Vendor: negotiated\s+(?:at|for)\s+\$[\d,]+ | vendor\s+(?:quoted|pricing):\s*\$
@@ -78,6 +82,7 @@ archive/       # Deprecated content
 ```
 
 **Acceptable Public Content:**
+
 - High-level architecture and design principles
 - General technology stack descriptions
 - Industry-standard methodologies
@@ -90,12 +95,14 @@ archive/       # Deprecated content
 ## Input Specifications
 
 **Environment Variables:**
+
 ```bash
 SESSION_CONTEXT    # JSON containing session metadata (optional)
 REPO_PATH          # Repository root path (default: current directory)
 ```
 
 **Command-line Arguments:**
+
 ```bash
 python3 scripts/organization_sanitation_agent.py \
   --mode {audit|rename|redact|relocate|full} \
@@ -104,6 +111,7 @@ python3 scripts/organization_sanitation_agent.py \
 ```
 
 **Modes:**
+
 - `audit` - Dry-run scan, generate report only (default)
 - `rename` - Execute file renaming only
 - `redact` - Apply content redactions only
@@ -119,6 +127,7 @@ python3 scripts/organization_sanitation_agent.py \
 **Generated When:** Every audit execution
 
 **Structure:**
+
 ```markdown
 # Repository Organization & Sanitization Audit Report
 
@@ -163,6 +172,7 @@ python3 scripts/organization_sanitation_agent.py \
 **Script Location:** `scripts/organization_sanitation_agent.py`
 
 **Key Components:**
+
 1. **OrganizationSanitationAgent Class:** Main orchestrator for all validations
 2. **Directory Structure Validator:** Checks file locations against CLAUDE.md standards
 3. **Filename Compliance Checker:** Validates naming conventions with auto-fix suggestions
@@ -171,6 +181,7 @@ python3 scripts/organization_sanitation_agent.py \
 6. **Session Context Loader:** Reads SESSION_CONTEXT environment variable (JSON)
 
 **Redaction Strategy:**
+
 - **Conservative approach:** Flag for human review rather than auto-redact
 - **Context-aware:** Consider surrounding text to reduce false positives
 - **Logged and reversible:** All changes tracked in Git with clear audit trail
@@ -299,10 +310,13 @@ competitive positioning
 ## Approval Workflow
 
 ### 1. Review Phase
+
 Agent generates `ORGANIZATION_AUDIT_REPORT.md` with complete list of proposed changes, justifications, and impact assessment.
 
 ### 2. Human Review
+
 Repository maintainer reviews each proposed change:
+
 - [ ] Redactions justified and appropriate?
 - [ ] No over-redaction (losing community value)?
 - [ ] Naming changes follow CLAUDE.md?
@@ -348,11 +362,13 @@ git checkout backup-pre-sanitization-YYYYMMDD -- path/to/file
 ## Integration with Data Breach Agent
 
 **Data Breach Agent** (critical proprietary content):
+
 - Scope: Algorithms, complete financial models, vendor contracts, credentials
 - Action: Immediate removal, incident reports, Git history scrubbing
 - Trigger: Pre-commit block, daily scans
 
 **Organization Sanitation Agent** (borderline sensitive content):
+
 - Scope: Specific metrics, vendor pricing details, customer names, timelines
 - Action: Redaction with [REDACTED], file organization
 - Trigger: Weekly audits, pre-release reviews
@@ -364,6 +380,7 @@ git checkout backup-pre-sanitization-YYYYMMDD -- path/to/file
 ## Metrics & Maintenance
 
 **Track Monthly:**
+
 - Files renamed per audit
 - Content redactions applied
 - False positive rate
@@ -371,11 +388,13 @@ git checkout backup-pre-sanitization-YYYYMMDD -- path/to/file
 - Community feedback on sanitized docs
 
 **Maintenance Schedule:**
+
 - **Weekly:** Automated audit via GitHub Actions
 - **Monthly:** Manual review of audit trends, pattern tuning
 - **Quarterly:** Effectiveness review, CLAUDE.md alignment check, process updates
 
 **Success Criteria:**
+
 1. Community Value: Documentation remains useful and educational
 2. Competitive Protection: Business intelligence stays internal
 3. Legal Compliance: No NDA or contractual violations

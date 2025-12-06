@@ -25,6 +25,7 @@ This skill performs intelligent file renaming to comply with CLAUDE.md standards
 **Target Pattern:** `[org]-[product]-[descriptor]-[type]-[resolution]-[version].[format]`
 
 **Transformation Steps:**
+
 1. Convert to lowercase
 2. Replace spaces/underscores with hyphens
 3. Remove special characters
@@ -54,6 +55,7 @@ After:  terrahash-mining-mining-process-diagram-original-v2-0.svg
 **Target Pattern:** `[org]-[product]-[category]-[title]-[version].[format]`
 
 **Transformation Steps:**
+
 1. Convert to lowercase
 2. Replace spaces/underscores with hyphens
 3. Remove special characters
@@ -83,6 +85,7 @@ After:  ryno-crypto-security-audit-report-v1-0.pdf
 **Target Pattern:** `[category]-[title]-[date-optional].md`
 
 **Transformation Steps:**
+
 1. Convert to lowercase
 2. Replace spaces/underscores with hyphens
 3. Extract or prompt for category
@@ -113,6 +116,7 @@ After:  guide-deployment.md
 For each file to be renamed:
 
 1. **Determine File Type**
+
    ```bash
    # Get file extension
    extension="${filename##*.}"
@@ -127,6 +131,7 @@ For each file to be renamed:
    ```
 
 2. **Extract Image Metadata** (for images)
+
    ```bash
    # Get image dimensions
    identify -format "%wx%h" image.png
@@ -134,6 +139,7 @@ For each file to be renamed:
    ```
 
 3. **Analyze Content** (for documents)
+
    ```bash
    # Extract text for categorization hints
    pdftotext document.pdf - | head -20
@@ -153,6 +159,7 @@ For each file to be renamed:
 For missing required components, use AskUserQuestion:
 
 **For Images:**
+
 ```markdown
 **Renaming:** Original_Filename.png
 
@@ -188,6 +195,7 @@ Please provide the following information:
 ```
 
 **For Documents:**
+
 ```markdown
 **Renaming:** Document_Name.pdf
 
@@ -343,6 +351,7 @@ def validate_new_filename(new_filename):
 Before renaming:
 
 1. **Check for conflicts**
+
    ```bash
    if [ -f "new_filename.ext" ]; then
        echo "ERROR: File already exists: new_filename.ext"
@@ -351,6 +360,7 @@ Before renaming:
    ```
 
 2. **Create backup list**
+
    ```bash
    echo "old_filename.ext -> new_filename.ext" >> SORT/rename_log.txt
    ```
@@ -470,18 +480,21 @@ file-organizer SORT/
 If renamed file conflicts with existing file:
 
 **Option 1: Increment version**
+
 ```
 existing: ths-stack-logo-icon-512x512-v1-0.png
 new:      ths-stack-logo-icon-512x512-v1-1.png
 ```
 
 **Option 2: Add suffix**
+
 ```
 existing: ryno-crypto-guide-overview-v1-0.pdf
 new:      ryno-crypto-guide-overview-alt-v1-0.pdf
 ```
 
 **Option 3: User prompt**
+
 ```
 Conflict detected:
   Existing: ths-stack-logo-icon-512x512-v1-0.png
@@ -499,6 +512,7 @@ Choose action [1-4]:
 ### Preserving Dates
 
 For time-sensitive files:
+
 ```bash
 # Extract date from original filename
 original="Security_Audit_Nov_7_2024.pdf"
@@ -511,6 +525,7 @@ new="ryno-crypto-security-audit-report-${date}-v1-0.pdf"
 ### Multi-Version Files
 
 When multiple versions exist:
+
 ```
 File_v1.pdf -> ryno-crypto-guide-overview-v1-0.pdf
 File_v2.pdf -> ryno-crypto-guide-overview-v2-0.pdf
@@ -568,6 +583,7 @@ Full details saved to: `SORT/rename_log_20251121_103000.txt`
 ### Common Issues and Solutions
 
 **File locked or in use:**
+
 ```bash
 if lsof "$filename" > /dev/null 2>&1; then
     echo "WARNING: File is in use: $filename"
@@ -576,6 +592,7 @@ fi
 ```
 
 **Permission denied:**
+
 ```bash
 if [ ! -w "$filename" ]; then
     echo "ERROR: No write permission for: $filename"
@@ -584,6 +601,7 @@ fi
 ```
 
 **Invalid characters in path:**
+
 ```bash
 # Sanitize the entire path
 safe_path=$(echo "$path" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
@@ -605,6 +623,7 @@ Before marking rename operation complete:
 ---
 
 **Related Documentation:**
+
 - CLAUDE.md (File naming conventions - source of truth)
 - .claude/skills/filename-validator/skill.md (Use this first)
 - .claude/skills/file-relocator/skill.md (Use this after renaming)

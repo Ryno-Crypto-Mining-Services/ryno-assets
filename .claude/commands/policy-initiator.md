@@ -25,9 +25,10 @@ This pipeline consists of 7 phases that can be executed with varying levels of a
 
 Before executing any agents, load context from previous work sessions to provide continuity.
 
-### Actions:
+### Actions
 
 1. **Read session-close workflow** to understand the documentation structure:
+
    ```
    Read: .claude/commands/session-close.md
    ```
@@ -44,6 +45,7 @@ Before executing any agents, load context from previous work sessions to provide
    - Create a JSON structure with previous work context
    - This will be passed to agents via the `SESSION_CONTEXT` environment variable
    - Format:
+
      ```json
      {
        "previous_work": "content of session-work.md",
@@ -60,7 +62,7 @@ Before executing any agents, load context from previous work sessions to provide
 
 **IMPORTANT:** Ask the user which agents to execute. This allows flexibility based on the nature of the commit.
 
-### User Prompt:
+### User Prompt
 
 Present the following options to the user:
 
@@ -86,7 +88,8 @@ Select OPSEC agent execution mode:
 Enter choice (1-4):
 ```
 
-### Store User Selection:
+### Store User Selection
+
 - Record the user's choice for Phase 2-3 execution
 - If user provides invalid input, reprompt
 - Default to option 1 (Full execution) if unclear
@@ -97,13 +100,14 @@ Enter choice (1-4):
 
 **Condition:** Execute only if user selected options 1 or 2 in Phase 1.
 
-### Execution:
+### Execution
 
 1. **Prepare environment**:
    - Set `SESSION_CONTEXT` environment variable with context from Phase 0
    - Set `REPO_PATH` to current directory
 
 2. **Run data breach agent**:
+
    ```bash
    SESSION_CONTEXT='<json_from_phase_0>' python3 scripts/data_breach_agent.py
    ```
@@ -129,7 +133,7 @@ Enter choice (1-4):
 
 **Condition:** Execute only if user selected options 1 or 3 in Phase 1.
 
-### Execution:
+### Execution
 
 1. **Prepare environment**:
    - Set `SESSION_CONTEXT` environment variable with context from Phase 0
@@ -137,6 +141,7 @@ Enter choice (1-4):
    - Set `DRY_RUN=true` (always start with audit)
 
 2. **Run organization agent in audit mode**:
+
    ```bash
    SESSION_CONTEXT='<json_from_phase_0>' python3 scripts/organization_sanitation_agent.py --mode=audit
    ```
@@ -159,6 +164,7 @@ Enter choice (1-4):
      - **review**: Display full report and reprompt
 
 5. **Apply fixes if approved**:
+
    ```bash
    python3 scripts/organization_sanitation_agent.py --mode=audit --execute
    ```
@@ -171,14 +177,16 @@ Enter choice (1-4):
 
 Run repository pre-commit hooks to catch any additional issues.
 
-### Actions:
+### Actions
 
 1. **Check if pre-commit is configured**:
+
    ```bash
    test -f .pre-commit-config.yaml && echo "configured" || echo "not configured"
    ```
 
 2. **If configured, run hooks**:
+
    ```bash
    pre-commit run --all-files
    ```
@@ -198,9 +206,10 @@ Run repository pre-commit hooks to catch any additional issues.
 
 Execute the session-close workflow to document work completed in this session.
 
-### Actions:
+### Actions
 
 1. **Check git status** (run in parallel):
+
    ```bash
    git status
    git log --oneline -10
@@ -214,6 +223,7 @@ Execute the session-close workflow to document work completed in this session.
 
 3. **Create/Update session-work.md**:
    - Document current session with structure:
+
      ```markdown
      # Session Work Summary
 
@@ -249,6 +259,7 @@ Execute the session-close workflow to document work completed in this session.
      ```
 
 4. **Stage session-work.md**:
+
    ```bash
    git add session-work.md
    ```
@@ -259,9 +270,10 @@ Execute the session-close workflow to document work completed in this session.
 
 Prompt user for approval before committing changes.
 
-### Actions:
+### Actions
 
 1. **Check if there are changes to commit**:
+
    ```bash
    git diff --cached --quiet && echo "no changes" || echo "has changes"
    ```
@@ -271,6 +283,7 @@ Prompt user for approval before committing changes.
 3. **If changes exist, generate commit message**:
    - Analyze staged changes
    - Draft commit message following repository conventions:
+
      ```
      <type>(<scope>): <description>
 
@@ -279,10 +292,12 @@ Prompt user for approval before committing changes.
      Generated with Claude Code
      Co-Authored-By: Claude <noreply@anthropic.com>
      ```
+
    - Types: chore, feat, fix, docs, refactor, test
    - Scope: opsec, documentation, organization, security
 
 4. **Present commit message to user**:
+
    ```
    📝 Proposed commit message:
    ----------------------------------------------------------------------
@@ -299,14 +314,17 @@ Prompt user for approval before committing changes.
    ```
 
 5. **Prompt for commit approval**:
+
    ```
    ❓ Proceed with git commit? (yes/no/edit)
    ```
+
    - **yes**: Execute commit
    - **no**: Abort (changes remain staged)
    - **edit**: Allow user to modify commit message, then reprompt
 
 6. **Execute commit**:
+
    ```bash
    git commit -m "$(cat <<'EOF'
    <commit_message_here>
@@ -324,29 +342,34 @@ Prompt user for approval before committing changes.
 
 Prompt user for approval before pushing to remote.
 
-### Actions:
+### Actions
 
 1. **Check current branch**:
+
    ```bash
    git branch --show-current
    ```
 
 2. **Check if remote is configured**:
+
    ```bash
    git remote -v
    ```
 
 3. **If remote exists, prompt for push**:
+
    ```
    ❓ Push changes to remote? (yes/no)
 
    Current branch: [branch-name]
    Remote: [remote-url]
    ```
+
    - **yes**: Execute push
    - **no**: Exit (commit remains local)
 
 4. **Execute push**:
+
    ```bash
    git push
    ```
@@ -356,6 +379,7 @@ Prompt user for approval before pushing to remote.
    - Show remote branch status
 
 6. **Final summary**:
+
    ```
    ✅ OPSEC Policy Initiator Complete
 
@@ -396,7 +420,8 @@ Throughout the pipeline, handle errors gracefully:
 
 The following operations can be executed in parallel for performance:
 
-### Phase 0 - Session Context Loading:
+### Phase 0 - Session Context Loading
+
 ```bash
 # Read multiple files in parallel
 cat .claude/commands/session-close.md &
@@ -404,7 +429,8 @@ cat session-work.md &  # if exists
 wait
 ```
 
-### Phase 2-3 - Agent Execution (if Full mode selected):
+### Phase 2-3 - Agent Execution (if Full mode selected)
+
 ```bash
 # Launch both agents concurrently
 SESSION_CONTEXT='...' python3 scripts/data_breach_agent.py &
@@ -421,7 +447,8 @@ ORG_EXIT=$?
 # Handle results from both
 ```
 
-### Phase 5 - Git Status Checks:
+### Phase 5 - Git Status Checks
+
 ```bash
 # Parallel git operations
 git status &

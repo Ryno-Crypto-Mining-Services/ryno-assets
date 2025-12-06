@@ -53,6 +53,7 @@ This is the **main orchestrator skill** for the comprehensive file organization 
 **Goal:** Discover all files in SORT/ directory and create initial inventory
 
 **Actions:**
+
 ```bash
 # Find all files in SORT/
 find SORT/ -type f > sort_inventory.txt
@@ -65,6 +66,7 @@ echo "Other files: $(find SORT/ -type f ! \( -name "*.png" -o -name "*.jpg" -o -
 ```
 
 **Output:**
+
 ```markdown
 ## Phase 1: Scan and Inventory
 
@@ -90,16 +92,19 @@ echo "Other files: $(find SORT/ -type f ! \( -name "*.png" -o -name "*.jpg" -o -
 **Goal:** Use filename-validator skill to identify non-compliant files
 
 **Invoke Skill:**
+
 ```markdown
 Use the filename-validator skill to validate all files in SORT/
 ```
 
 **Expected Output:**
+
 - List of valid files (already compliant)
 - List of invalid files with specific issues
 - Categorization of violations (uppercase, spaces, missing components, etc.)
 
 **Decision Point:**
+
 - If all files valid → Skip to Phase 6 (Relocate)
 - If some invalid → Continue to Phase 3
 
@@ -108,6 +113,7 @@ Use the filename-validator skill to validate all files in SORT/
 **Goal:** Analyze file contents to assist with categorization and renaming
 
 **For Images:**
+
 ```bash
 # Get image dimensions
 identify -format "%f: %wx%h\n" SORT/*.png SORT/*.jpg SORT/*.svg 2>/dev/null
@@ -118,6 +124,7 @@ identify -format "%f: %wx%h\n" SORT/*.png SORT/*.jpg SORT/*.svg 2>/dev/null
 ```
 
 **For Documents:**
+
 ```bash
 # Extract first page text to understand content
 pdftotext -l 1 "SORT/document.pdf" - | head -20
@@ -127,6 +134,7 @@ pandoc "SORT/document.docx" -t plain | head -20
 ```
 
 **For All Files:**
+
 ```python
 def analyze_file_for_components(filename, file_type, content_preview=None):
     """
@@ -213,6 +221,7 @@ def analyze_file_for_components(filename, file_type, content_preview=None):
 ```
 
 **Output:**
+
 ```markdown
 ## Phase 3: Content Analysis
 
@@ -260,6 +269,7 @@ AI Suggestions: org=ths, product=stack, type=diagram
 ```
 
 **Implementation:**
+
 ```python
 def prompt_user_for_file(filename, file_type, ai_suggestions):
     """
@@ -303,11 +313,13 @@ def prompt_user_for_file(filename, file_type, ai_suggestions):
 ```
 
 **Handling User Input:**
+
 - If user provides all required info → Proceed with full rename
 - If user provides partial info → Use AI suggestions for missing components
 - If user skips → Move file to SORT/NEEDS_REVIEW/ for later
 
 **Output:**
+
 ```markdown
 ## Phase 4: User Input Collection
 
@@ -328,11 +340,13 @@ def prompt_user_for_file(filename, file_type, ai_suggestions):
 **Goal:** Use file-renamer skill to rename all non-compliant files
 
 **Invoke Skill:**
+
 ```markdown
 Use the file-renamer skill to rename all files in SORT/ according to CLAUDE.md standards
 ```
 
 **Process:**
+
 1. For each file with validation issues:
    - Combine AI suggestions + user input
    - Construct compliant filename
@@ -341,6 +355,7 @@ Use the file-renamer skill to rename all files in SORT/ according to CLAUDE.md s
    - Verify rename successful
 
 **Output:**
+
 ```markdown
 ## Phase 5: Batch Rename
 
@@ -372,11 +387,13 @@ Use the file-renamer skill to rename all files in SORT/ according to CLAUDE.md s
 **Goal:** Use file-relocator skill to move files to correct directories
 
 **Invoke Skill:**
+
 ```markdown
 Use the file-relocator skill to relocate all files from SORT/ to their proper destinations
 ```
 
 **Process:**
+
 1. For each renamed file:
    - Determine destination based on filename pattern
    - Create destination directory if needed
@@ -385,6 +402,7 @@ Use the file-relocator skill to relocate all files from SORT/ to their proper de
    - Verify file at destination
 
 **Output:**
+
 ```markdown
 ## Phase 6: Batch Relocate
 
@@ -422,11 +440,13 @@ Use the file-relocator skill to relocate all files from SORT/ to their proper de
 **Goal:** Run data-breach-agent to ensure no sensitive information
 
 **Invoke Agent:**
+
 ```markdown
 Execute data-breach-agent.md to scan for sensitive data
 ```
 
 **What It Checks:**
+
 - Financial data (budgets, revenue, costs)
 - AI/ML models and training data
 - Treasury addresses and private keys
@@ -435,15 +455,18 @@ Execute data-breach-agent.md to scan for sensitive data
 - Proprietary algorithms
 
 **If Issues Found:**
+
 - ❌ BLOCK commit
 - Generate OPSEC_ALERT.md
 - Generate RECOVERY_PLAN.md
 - Provide sanitization instructions
 
 **If Clean:**
+
 - ✅ PASS - No sensitive data detected
 
 **Output:**
+
 ```markdown
 ## Phase 7: Data Breach Detection
 
@@ -469,11 +492,13 @@ Execute data-breach-agent.md to scan for sensitive data
 **Goal:** Run organization-sanitation-agent for final validation
 
 **Invoke Agent:**
+
 ```markdown
 Execute organization-sanitation-agent.md in full mode
 ```
 
 **What It Validates:**
+
 - Directory structure compliance
 - File naming convention adherence
 - Content placement accuracy
@@ -485,6 +510,7 @@ Execute organization-sanitation-agent.md in full mode
 **For This Workflow:** Use **full mode** (all checks)
 
 **Output:**
+
 ```markdown
 ## Phase 8: Organization Sanitation
 
@@ -659,6 +685,7 @@ If you need to undo this organization:
 
 All files successfully organized according to CLAUDE.md standards.
 OPSEC compliance verified. Ready for commit.
+
 ```
 
 **Save Report:**
@@ -674,6 +701,7 @@ EOF
 **Goal:** Provide clear summary and actionable next steps
 
 **Output:**
+
 ```markdown
 ## ✅ File Organization Complete
 
@@ -719,6 +747,7 @@ EOF
 **Suggested Commit Message:**
 
 ```
+
 feat(organization): organize 20 files from SORT/ directory
 
 - Renamed 18 files to comply with CLAUDE.md standards
@@ -728,11 +757,13 @@ feat(organization): organize 20 files from SORT/ directory
 - Validated organization (organization-sanitation-agent: PASS)
 
 Images organized:
+
 - 8 files → assets/images/ryno-crypto/
 - 5 files → assets/images/terrahash-stack/
 - 2 files → assets/diagrams/
 
 Documents organized:
+
 - 4 files → prd/active/
 - 3 files → docs/guides/
 
@@ -740,6 +771,7 @@ See FILE_ORGANIZATION_REPORT_20251121_103000.md for full details.
 
 🤖 Generated with Claude Code
 Co-Authored-By: Claude <noreply@anthropic.com>
+
 ```
 
 **Commands to Execute:**
@@ -761,6 +793,7 @@ git push origin main
 ```
 
 **Files for Your Records:**
+
 - 📄 FILE_ORGANIZATION_REPORT_20251121_103000.md (comprehensive report)
 - 📄 ORGANIZATION_AUDIT_REPORT.md (OPSEC validation)
 - 📄 rename_log_20251121_103000.txt (rename details)
@@ -770,6 +803,7 @@ git push origin main
 ---
 
 **Thank you for using file-organizer! 🎉**
+
 ```
 
 ## Error Handling and Recovery
@@ -801,6 +835,7 @@ git push origin main
 ```
 
 **Undo renaming:**
+
 ```bash
 # Use rename log to reverse
 while read line; do
@@ -811,6 +846,7 @@ done < rename_log.txt
 ```
 
 **Complete rollback:**
+
 ```bash
 # If changes committed but not pushed
 git reset --hard HEAD~1
@@ -840,6 +876,7 @@ Before marking organization complete:
 ## Integration with Commands
 
 This skill is typically invoked by:
+
 - `/sort-files` command (primary use case)
 - `/cleanup` command
 - Pre-commit hooks (for validation)
@@ -871,12 +908,14 @@ LOG_LEVEL=INFO
 ## Performance Considerations
 
 **For large file sets (100+ files):**
+
 - Process in batches of 25
 - Show progress indicators
 - Provide time estimates
 - Allow pausing/resuming
 
 **For small file sets (< 10 files):**
+
 - Complete workflow in single pass
 - Minimal user interaction
 - Quick turnaround
@@ -884,6 +923,7 @@ LOG_LEVEL=INFO
 ---
 
 **Related Documentation:**
+
 - CLAUDE.md (Repository standards - source of truth)
 - .claude/skills/filename-validator/skill.md (Phase 2)
 - .claude/skills/file-renamer/skill.md (Phase 5)

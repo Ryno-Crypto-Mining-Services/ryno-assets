@@ -8,11 +8,13 @@ version: "2.0"
 # Close Session
 
 ## Purpose
+
 Gracefully conclude a documentation/media work session by documenting progress, validating file organization, ensuring OPSEC compliance, and preparing for the next session or contributor.
 
 **Context**: This repository is primarily a **documentation and media asset repository**. Session closure focuses on documentation quality, file organization, naming conventions, and security compliance rather than software testing or builds.
 
 **Reusability Note:** This workflow can be invoked:
+
 - **Standalone**: Via `/close-session` command for manual session closure
 - **Orchestrated**: As part of `/policy-initiator` command (Phase 5) for OPSEC compliance workflows
 
@@ -98,6 +100,7 @@ Gracefully conclude a documentation/media work session by documenting progress, 
 ```
 
 **Documentation Quality Checklist:**
+
 - [ ] All new documentation has proper headers
 - [ ] File references use correct format: `file_path:line_number`
 - [ ] Images/diagrams are properly named and organized
@@ -121,11 +124,13 @@ Gracefully conclude a documentation/media work session by documenting progress, 
 ```
 
 **Organization Actions:**
+
 - If naming violations found: Note for correction
 - If files misplaced: Note for relocation to proper directories
 - If temporary files found: Mark for cleanup
 
 **Suggest running organization agent if issues detected:**
+
 ```
 ⚠️ File organization issues detected. Consider running:
 python3 scripts/organization_sanitation_agent.py --mode=audit
@@ -144,6 +149,7 @@ python3 scripts/organization_sanitation_agent.py --mode=audit
 ```
 
 **If suspicious patterns detected:**
+
 ```
 🔒 Potential sensitive content detected. Consider running:
 python3 scripts/data_breach_agent.py
@@ -170,6 +176,7 @@ fi
 ```
 
 **Actions:**
+
 - If changes uncommitted: Prompt to commit with auto-generated message
 - If commits unpushed: Prompt to push to remote
 - If branch needs cleanup: Suggest cleanup for next session
@@ -292,6 +299,7 @@ Create or update **session-work.md**:
 ```
 
 **Cleanup Actions:**
+
 ```
 Temporary files found:
 - [Temp file 1]: Delete? (yes/no)

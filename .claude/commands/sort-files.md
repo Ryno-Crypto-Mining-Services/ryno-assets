@@ -14,6 +14,7 @@ Comprehensive workflow to organize files from the SORT/ directory according to C
 ```
 
 This command will:
+
 1. Scan and inventory files in SORT/ directory
 2. Validate filenames against CLAUDE.md standards
 3. Analyze file content and extract metadata
@@ -33,6 +34,7 @@ This command will:
 This pipeline uses the **file-organizer skill** as the main orchestrator, integrating with utility skills and OPSEC agents.
 
 **Key Features:**
+
 - ✅ Fully automated processing (with interactive prompts for unclear files)
 - ✅ Comprehensive OPSEC validation
 - ✅ Git commit/push with user confirmation
@@ -47,9 +49,10 @@ This pipeline uses the **file-organizer skill** as the main orchestrator, integr
 
 Before starting the organization workflow, verify prerequisites and initialize the environment.
 
-#### Actions:
+#### Actions
 
 1. **Verify SORT/ directory exists and contains files:**
+
    ```bash
    if [ ! -d "SORT/" ]; then
        echo "❌ ERROR: SORT/ directory not found"
@@ -68,14 +71,17 @@ Before starting the organization workflow, verify prerequisites and initialize t
    ```
 
 2. **Read CLAUDE.md for standards reference:**
+
    ```
    Read: CLAUDE.md
    ```
+
    - Extract file naming conventions
    - Note repository structure
    - Understand categorization rules
 
 3. **Load skill definitions:**
+
    ```
    Read: .claude/skills/file-organizer/skill.md
    Read: .claude/skills/filename-validator/skill.md
@@ -84,18 +90,21 @@ Before starting the organization workflow, verify prerequisites and initialize t
    ```
 
 4. **Load OPSEC agent definitions:**
+
    ```
    Read: .claude/agents/data-breach-agent.md
    Read: .claude/agents/organization-sanitation-agent.md
    ```
 
 5. **Create working directories:**
+
    ```bash
    mkdir -p SORT/NEEDS_REVIEW
    mkdir -p SORT/LOGS
    ```
 
 6. **Initialize operation log:**
+
    ```bash
    OPERATION_ID="sort-$(date +%Y%m%d-%H%M%S)"
    LOG_FILE="SORT/LOGS/${OPERATION_ID}.log"
@@ -108,6 +117,7 @@ Before starting the organization workflow, verify prerequisites and initialize t
    ```
 
 **Output:**
+
 ```
 ✅ Pre-flight checks complete
    - SORT/ directory: Found (25 files)
@@ -125,9 +135,10 @@ Ready to begin file organization.
 
 Use the **file-organizer skill** (Phase 1) to scan all files in SORT/ directory.
 
-#### Actions:
+#### Actions
 
 1. **Find all files:**
+
    ```bash
    echo "Scanning SORT/ directory..." | tee -a "$LOG_FILE"
 
@@ -142,6 +153,7 @@ Use the **file-organizer skill** (Phase 1) to scan all files in SORT/ directory.
    ```
 
 2. **Display inventory summary:**
+
    ```
    📦 SORT/ Directory Inventory
 
@@ -158,6 +170,7 @@ Use the **file-organizer skill** (Phase 1) to scan all files in SORT/ directory.
    ```
 
 3. **Log inventory:**
+
    ```bash
    {
        echo ""
@@ -178,7 +191,7 @@ Use the **file-organizer skill** (Phase 1) to scan all files in SORT/ directory.
 
 Use the **filename-validator skill** to identify non-compliant filenames.
 
-#### Actions:
+#### Actions
 
 1. **Validate each file:**
    - Check for uppercase letters
@@ -188,6 +201,7 @@ Use the **filename-validator skill** to identify non-compliant filenames.
    - Check for required components
 
 2. **Generate validation report:**
+
    ```bash
    python3 << 'VALIDATE_SCRIPT'
    import os
@@ -277,6 +291,7 @@ Use the **filename-validator skill** to identify non-compliant filenames.
    ```
 
 3. **Display validation summary:**
+
    ```
    📋 Filename Validation Results
 
@@ -293,9 +308,10 @@ Use the **filename-validator skill** to identify non-compliant filenames.
 
 Extract metadata from files to assist with categorization and renaming.
 
-#### Actions:
+#### Actions
 
 1. **Extract image dimensions:**
+
    ```bash
    echo "Extracting image metadata..." | tee -a "$LOG_FILE"
 
@@ -307,6 +323,7 @@ Extract metadata from files to assist with categorization and renaming.
    ```
 
 2. **Analyze filenames for components:**
+
    ```bash
    python3 scripts/analyze_filenames.py SORT/ > SORT/LOGS/ai_suggestions.json
    ```
@@ -319,6 +336,7 @@ Extract metadata from files to assist with categorization and renaming.
    - Version
 
 3. **Display analysis summary:**
+
    ```
    🔍 Content Analysis Complete
 
@@ -336,9 +354,10 @@ Extract metadata from files to assist with categorization and renaming.
 
 For files where components cannot be automatically determined, prompt user for input.
 
-#### Actions:
+#### Actions
 
 1. **Identify unclear files:**
+
    ```bash
    # Files missing required components from AI analysis
    # E.g., generic names like "image1.png" or "document.pdf"
@@ -354,6 +373,7 @@ For files where components cannot be automatically determined, prompt user for i
    - Descriptor/Title: Brief description?
 
    Example:
+
    ```markdown
    **Need your help categorizing this file:**
 
@@ -368,6 +388,7 @@ For files where components cannot be automatically determined, prompt user for i
    ```
 
 3. **Collect and store user input:**
+
    ```bash
    # Merge user input with AI suggestions
    # Create final component mapping for each file
@@ -381,7 +402,7 @@ For files where components cannot be automatically determined, prompt user for i
 
 Use the **file-renamer skill** to rename all non-compliant files.
 
-#### Actions:
+#### Actions
 
 1. **Generate new filenames:**
    - Combine AI suggestions + user input + metadata
@@ -389,6 +410,7 @@ Use the **file-renamer skill** to rename all non-compliant files.
    - Validate each new filename
 
 2. **Show rename preview:**
+
    ```
    📝 Rename Preview (20 files)
 
@@ -407,6 +429,7 @@ Use the **file-renamer skill** to rename all non-compliant files.
    ```
 
 3. **Execute renames:**
+
    ```bash
    # Use git mv to preserve history
    while read line; do
@@ -419,6 +442,7 @@ Use the **file-renamer skill** to rename all non-compliant files.
    ```
 
 4. **Log renames:**
+
    ```bash
    cp SORT/LOGS/rename_plan.txt "SORT/LOGS/rename_log_${OPERATION_ID}.txt"
    ```
@@ -429,7 +453,7 @@ Use the **file-renamer skill** to rename all non-compliant files.
 
 Use the **file-relocator skill** to move files to correct repository directories.
 
-#### Actions:
+#### Actions
 
 1. **Determine destinations:**
    - Parse renamed filenames
@@ -437,6 +461,7 @@ Use the **file-relocator skill** to move files to correct repository directories
    - Create destination directory map
 
 2. **Show relocation preview:**
+
    ```
    📂 Relocation Plan (20 files)
 
@@ -462,6 +487,7 @@ Use the **file-relocator skill** to move files to correct repository directories
    ```
 
 3. **Create destination directories:**
+
    ```bash
    # Create any missing directories
    mkdir -p assets/images/ryno-crypto
@@ -476,6 +502,7 @@ Use the **file-relocator skill** to move files to correct repository directories
    ```
 
 4. **Execute relocations:**
+
    ```bash
    while read line; do
        filename=$(echo "$line" | awk '{print $1}')
@@ -487,6 +514,7 @@ Use the **file-relocator skill** to move files to correct repository directories
    ```
 
 5. **Create rollback script:**
+
    ```bash
    cat > "SORT/LOGS/rollback_${OPERATION_ID}.sh" << 'ROLLBACK'
    #!/bin/bash
@@ -505,9 +533,10 @@ Use the **file-relocator skill** to move files to correct repository directories
 
 Execute the **data-breach-agent** to ensure no sensitive information is being committed.
 
-#### Actions:
+#### Actions
 
 1. **Run data breach agent:**
+
    ```bash
    echo "Running data breach detection..." | tee -a "$LOG_FILE"
 
@@ -515,6 +544,7 @@ Execute the **data-breach-agent** to ensure no sensitive information is being co
    ```
 
 2. **Check agent results:**
+
    ```bash
    if [ -f "OPSEC_ALERT.md" ]; then
        echo "❌ DATA BREACH DETECTED"
@@ -529,6 +559,7 @@ Execute the **data-breach-agent** to ensure no sensitive information is being co
    ```
 
 3. **Log results:**
+
    ```bash
    echo "Data Breach Check: PASS" >> "$LOG_FILE"
    ```
@@ -541,9 +572,10 @@ Execute the **data-breach-agent** to ensure no sensitive information is being co
 
 Execute the **organization-sanitation-agent** for final validation.
 
-#### Actions:
+#### Actions
 
 1. **Run organization agent:**
+
    ```bash
    echo "Running organization sanitation..." | tee -a "$LOG_FILE"
 
@@ -551,6 +583,7 @@ Execute the **organization-sanitation-agent** for final validation.
    ```
 
 2. **Check results:**
+
    ```bash
    # Agent generates ORGANIZATION_AUDIT_REPORT.md
 
@@ -564,6 +597,7 @@ Execute the **organization-sanitation-agent** for final validation.
    ```
 
 3. **Log results:**
+
    ```bash
    echo "Organization Check: PASS" >> "$LOG_FILE"
    ```
@@ -574,7 +608,7 @@ Execute the **organization-sanitation-agent** for final validation.
 
 Create a detailed report of the entire organization operation.
 
-#### Actions:
+#### Actions
 
 1. **Compile all logs and results:**
    - Inventory data
@@ -584,6 +618,7 @@ Create a detailed report of the entire organization operation.
    - OPSEC reports
 
 2. **Generate report:**
+
    ```bash
    cat > "FILE_ORGANIZATION_REPORT_${OPERATION_ID}.md" << 'REPORT'
    # File Organization Report
@@ -613,6 +648,7 @@ Create a detailed report of the entire organization operation.
    ```
 
 3. **Display summary:**
+
    ```
    ✅ File Organization Complete!
 
@@ -632,14 +668,16 @@ Create a detailed report of the entire organization operation.
 
 Prompt user for commit message and create commit.
 
-#### Actions:
+#### Actions
 
 1. **Show changes summary:**
+
    ```bash
    git status --short | grep -E '^(A|M|R|D)' | sort
    ```
 
 2. **Generate suggested commit message:**
+
    ```
    feat(organization): organize 20 files from SORT/ directory
 
@@ -667,6 +705,7 @@ Prompt user for commit message and create commit.
 3. **Prompt user for commit message:**
 
    Use AskUserQuestion:
+
    ```markdown
    Ready to create git commit.
 
@@ -679,6 +718,7 @@ Prompt user for commit message and create commit.
    ```
 
 4. **Create commit:**
+
    ```bash
    if [[ $user_choice == "1" || $user_choice == "2" ]]; then
        # Stage all changes
@@ -704,9 +744,10 @@ Prompt user for commit message and create commit.
 
 Prompt user before pushing to remote.
 
-#### Actions:
+#### Actions
 
 1. **Check if commit was created:**
+
    ```bash
    if git log -1 --oneline | grep -q "feat(organization)"; then
        # Commit exists, proceed to push prompt
@@ -719,6 +760,7 @@ Prompt user before pushing to remote.
 2. **Prompt user for push:**
 
    Use AskUserQuestion:
+
    ```markdown
    Commit created successfully.
 
@@ -730,6 +772,7 @@ Prompt user before pushing to remote.
    ```
 
 3. **Execute push:**
+
    ```bash
    if [[ $user_choice == "1" ]]; then
        current_branch=$(git branch --show-current)
@@ -754,9 +797,10 @@ Prompt user before pushing to remote.
 
 Final cleanup and provide next steps to user.
 
-#### Actions:
+#### Actions
 
 1. **Check SORT/ directory status:**
+
    ```bash
    remaining_files=$(find SORT/ -type f ! -path "*/LOGS/*" ! -path "*/NEEDS_REVIEW/*" | wc -l)
 
@@ -776,6 +820,7 @@ Final cleanup and provide next steps to user.
    ```
 
 2. **Display final summary:**
+
    ```
    ╔════════════════════════════════════════════════════════════╗
    ║         FILE ORGANIZATION COMPLETE                         ║
@@ -815,6 +860,7 @@ Final cleanup and provide next steps to user.
    ```
 
 3. **Final log entry:**
+
    ```bash
    {
        echo "==========================================="
@@ -834,17 +880,20 @@ Final cleanup and provide next steps to user.
 ### Critical Errors
 
 **If OPSEC check fails:**
+
 - ❌ STOP immediately
 - Do NOT proceed to commit
 - Display OPSEC_ALERT.md
 - Provide remediation steps
 
 **If git operations fail:**
+
 - Provide clear error message
 - Show manual git commands
 - Offer rollback option
 
 **If file operations fail:**
+
 - Stop at failed operation
 - Keep detailed error log
 - Provide rollback script
@@ -852,6 +901,7 @@ Final cleanup and provide next steps to user.
 ### Recovery
 
 **Rollback script usage:**
+
 ```bash
 # Undo all relocations
 ./SORT/LOGS/rollback_[operation_id].sh

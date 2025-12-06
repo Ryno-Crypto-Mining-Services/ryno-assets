@@ -286,17 +286,20 @@ security-audit-report-20251107.md
 ### Special Cases
 
 **Videos:**
+
 ```
 *.mp4, *.mov, *.avi → assets/videos/
 ```
 
 **Templates:**
+
 ```
 *-template-* → assets/templates/ (for design templates)
 *-template-* → examples/templates/ (for code/doc templates)
 ```
 
 **Scripts:**
+
 ```
 *.py, *.sh, *.js (if utility) → scripts/
 ```
@@ -648,6 +651,7 @@ def prompt_user_for_destination(filename):
 If file already exists at destination:
 
 **Strategy 1: Version Increment**
+
 ```bash
 # If ryno-crypto-logo-icon-512x512-v1-0.png exists
 # Rename incoming to v1-1
@@ -655,6 +659,7 @@ new_filename="${filename/-v1-0./-v1-1.}"
 ```
 
 **Strategy 2: Timestamp Suffix**
+
 ```bash
 # Add timestamp to avoid collision
 timestamp=$(date +%Y%m%d-%H%M%S)
@@ -662,6 +667,7 @@ new_filename="${filename%.*}-${timestamp}.${filename##*.}"
 ```
 
 **Strategy 3: User Prompt**
+
 ```bash
 echo "File exists at destination: $dest_path"
 echo "1. Overwrite existing file"
@@ -790,6 +796,7 @@ Before marking relocation complete:
 ---
 
 **Related Documentation:**
+
 - CLAUDE.md (Repository structure reference)
 - .claude/skills/filename-validator/skill.md
 - .claude/skills/file-renamer/skill.md (Use this before relocating)
